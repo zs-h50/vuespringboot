@@ -12,6 +12,8 @@
 	<select id="getUserLogin" parameterType="User" resultMap="ResultMap">
 		select account,password,identity from user where account=#{account} and password =#{password} and identity = #{identity}
 	</select>
-	
+	<select id="getUser" resultMap="ResultMap">
+		select * from user where identity != 0
+	</select>
 	
 </mapper>    

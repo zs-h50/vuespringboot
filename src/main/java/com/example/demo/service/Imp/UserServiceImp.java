@@ -1,6 +1,8 @@
 package com.example.demo.service.Imp;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,15 @@ public class UserServiceImp implements UserService {
 		return userMapper.getUserLogin(user);
 	}
 
+	/**
+	 * 查询所有用户
+	 */
+	@Override
+	public List<User> getUser() {
+		// TODO Auto-generated method stub
+		return userMapper.getUser();
+	}
+
+	
 	
 }
