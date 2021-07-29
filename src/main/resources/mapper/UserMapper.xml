@@ -9,8 +9,8 @@
 		<result column="identity" property="identity" />
 	</resultMap>
 	
-	<select id="getUserLogin"  resultMap="ResultMap">
-		select * from user where account=#{account} and password =#{password} and identity = #{identity}
+	<select id="getUserLogin" parameterType="User" resultMap="ResultMap">
+		select account,password,identity from user where account=#{account} and password =#{password} and identity = #{identity}
 	</select>
 	
 	
