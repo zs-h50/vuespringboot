@@ -33,6 +33,32 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		return userMapper.getUser();
 	}
+	/**
+	 * 新增用户
+	 */
+	@Override
+	public int AddUser(User user) {
+		// TODO Auto-generated method stub
+		return userMapper.AddUser(user);
+	}
+
+	/**
+	 * 删除用户
+	 */
+	@Override
+	public int DelUserById(Long id) {
+		// TODO Auto-generated method stub
+		return userMapper.DelUserById(id);
+	}
+	
+	/**
+	 * 修改用户信息
+	 */
+	@Override
+	public int UpdateByUser(User user) {
+		// TODO Auto-generated method stub
+		return userMapper.UpdateByUser(user);
+	}
 
 	
 	
