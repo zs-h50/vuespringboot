@@ -120,6 +120,11 @@ public class UserController {
 		return Result.success();
 	}
 	
+	/**
+	 * 修改单元格里面的用户信息
+	 * @param user
+	 * @return
+	 */
 //	@ResponseBody
 	@PutMapping("/admin/operate/update")
 	public Result UpdateUser(@RequestBody User user) {

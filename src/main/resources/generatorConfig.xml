@@ -48,6 +48,6 @@
                selectByExampleQueryId="false">
             <domainObjectRenamingRule searchString="^[^_]" replaceString="" />
         </table> -->
-        <table tableName="user" domainObjectName="User"></table>
+        <table tableName="household" domainObjectName="HouseHold"></table>
     </context>
 </generatorConfiguration>
