@@ -290,7 +290,7 @@
   
   <select id="getAllhouse" resultMap="BaseResultMap" >
   		select s.s_name,h_id, h.s_id, genre, h_name, h_gender, h_phone, h_birthday, h_card, h_fettle, h_remark 
-  		from household left join student as s on s.s_id = s_id
+  		from household as h left join student as s on s.s_id = h.s_id
   </select>
   
 </mapper>

@@ -33,6 +33,13 @@ public class HouseServiceImp implements HouseService{
 		return houseMapper.insertSelective(record);
 	}
 
+	@Override
+	public int deleteByPrimaryKey(Long hId) {
+		// TODO Auto-generated method stub
+		return houseMapper.deleteByPrimaryKey(hId);
+	}
+
+	
 	
 	
 }

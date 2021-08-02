@@ -18,4 +18,11 @@ public interface HouseService {
 	 * @return
 	 */
 	int insertSelective(HouseHold record);
+	
+	/**
+	 * 删除
+	 * @param hId
+	 * @return
+	 */
+	int deleteByPrimaryKey(Long hId);
 }
