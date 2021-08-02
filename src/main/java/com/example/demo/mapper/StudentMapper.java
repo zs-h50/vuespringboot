@@ -33,4 +33,11 @@ public interface StudentMapper {
     int updateByPrimaryKeyWithBLOBs(Student record);
 
     int updateByPrimaryKey(Student record);
+    
+    /**
+     * 查询所有学生
+     * @return
+     */
+    List<Student> getAll();
+    
 }

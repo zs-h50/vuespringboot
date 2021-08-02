@@ -20,11 +20,17 @@
     <result column="matherphone" jdbcType="VARCHAR" property="matherphone" />
     <result column="fettle" jdbcType="INTEGER" property="fettle" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
-    <result column="c_id" jdbcType="BIGINT" property="cId" />
+    <result column="c_id" property="cId"/>
+    <association property="fclass" javaType="Fclass">
+    	<id column="c_id" property="cId" />
+    	<result column="classname" property="classname" />
+    	<result column="c_number" property="cNumber" />
+    </association>
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.pojo.Student">
     <result column="situation" jdbcType="LONGVARCHAR" property="situation" />
   </resultMap>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -546,5 +552,14 @@
       c_id = #{cId,jdbcType=BIGINT}
     where s_id = #{sId,jdbcType=BIGINT}
   </update>
+  
+  
+  <select id="getAll" resultMap="BaseResultMap">
+  		select s_id, s_no, s_name, gender, s_phone, email, birthday, id_card, contact, contactphone, address, postcode, father, fatherphone, mather, matherphone, fettle, remark,s.c_id,classname 
+    from student as s 
+    left join fclass as f
+    on s.c_id = f.c_id
+  </select>
+  
   
 </mapper>

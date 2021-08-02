@@ -41,167 +41,254 @@ public class Student {
 
     private Long cId;	//班级标识 
 
-    private String situation;
+    private String situation; 	//家庭状况
+    
+    private Fclass fclass;
 
-    public Long getsId() {
-        return sId;
-    }
+    
+    public Student() {}
 
-    public void setsId(Long sId) {
-        this.sId = sId;
-    }
+    
 
-    public String getsNo() {
-        return sNo;
-    }
+	public Student(Long sId, String sNo, String sName, Integer gender, String sPhone, String email, Date birthday,
+			String idCard, String contact, String contactphone, String address, String postcode, String father,
+			String fatherphone, String mather, String matherphone, Integer fettle, String remark, Long cId,
+			String situation, Fclass fclass) {
+		super();
+		this.sId = sId;
+		this.sNo = sNo;
+		this.sName = sName;
+		this.gender = gender;
+		this.sPhone = sPhone;
+		this.email = email;
+		this.birthday = birthday;
+		this.idCard = idCard;
+		this.contact = contact;
+		this.contactphone = contactphone;
+		this.address = address;
+		this.postcode = postcode;
+		this.father = father;
+		this.fatherphone = fatherphone;
+		this.mather = mather;
+		this.matherphone = matherphone;
+		this.fettle = fettle;
+		this.remark = remark;
+		this.cId = cId;
+		this.situation = situation;
+		this.fclass = fclass;
+	}
 
-    public void setsNo(String sNo) {
-        this.sNo = sNo == null ? null : sNo.trim();
-    }
 
-    public String getsName() {
-        return sName;
-    }
 
-    public void setsName(String sName) {
-        this.sName = sName == null ? null : sName.trim();
-    }
+	public Long getsId() {
+		return sId;
+	}
 
-    public Integer getGender() {
-        return gender;
-    }
 
-    public void setGender(Integer gender) {
-        this.gender = gender;
-    }
+	public void setsId(Long sId) {
+		this.sId = sId;
+	}
 
-    public String getsPhone() {
-        return sPhone;
-    }
 
-    public void setsPhone(String sPhone) {
-        this.sPhone = sPhone == null ? null : sPhone.trim();
-    }
+	public String getsNo() {
+		return sNo;
+	}
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
+	public void setsNo(String sNo) {
+		this.sNo = sNo;
+	}
 
-    public Date getBirthday() {
-        return birthday;
-    }
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
+	public String getsName() {
+		return sName;
+	}
 
-    public String getIdCard() {
-        return idCard;
-    }
 
-    public void setIdCard(String idCard) {
-        this.idCard = idCard == null ? null : idCard.trim();
-    }
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
 
-    public String getContact() {
-        return contact;
-    }
 
-    public void setContact(String contact) {
-        this.contact = contact == null ? null : contact.trim();
-    }
+	public Integer getGender() {
+		return gender;
+	}
 
-    public String getContactphone() {
-        return contactphone;
-    }
 
-    public void setContactphone(String contactphone) {
-        this.contactphone = contactphone == null ? null : contactphone.trim();
-    }
+	public void setGender(Integer gender) {
+		this.gender = gender;
+	}
 
-    public String getAddress() {
-        return address;
-    }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
+	public String getsPhone() {
+		return sPhone;
+	}
 
-    public String getPostcode() {
-        return postcode;
-    }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode == null ? null : postcode.trim();
-    }
+	public void setsPhone(String sPhone) {
+		this.sPhone = sPhone;
+	}
 
-    public String getFather() {
-        return father;
-    }
 
-    public void setFather(String father) {
-        this.father = father == null ? null : father.trim();
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getFatherphone() {
-        return fatherphone;
-    }
 
-    public void setFatherphone(String fatherphone) {
-        this.fatherphone = fatherphone == null ? null : fatherphone.trim();
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getMather() {
-        return mather;
-    }
 
-    public void setMather(String mather) {
-        this.mather = mather == null ? null : mather.trim();
-    }
+	public Date getBirthday() {
+		return birthday;
+	}
 
-    public String getMatherphone() {
-        return matherphone;
-    }
 
-    public void setMatherphone(String matherphone) {
-        this.matherphone = matherphone == null ? null : matherphone.trim();
-    }
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 
-    public Integer getFettle() {
-        return fettle;
-    }
 
-    public void setFettle(Integer fettle) {
-        this.fettle = fettle;
-    }
+	public String getIdCard() {
+		return idCard;
+	}
 
-    public String getRemark() {
-        return remark;
-    }
 
-    public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
-    }
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
+	}
 
-    public Long getcId() {
-        return cId;
-    }
 
-    public void setcId(Long cId) {
-        this.cId = cId;
-    }
+	public String getContact() {
+		return contact;
+	}
 
-    public String getSituation() {
-        return situation;
-    }
 
-    public void setSituation(String situation) {
-        this.situation = situation == null ? null : situation.trim();
-    }
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+
+	public String getContactphone() {
+		return contactphone;
+	}
+
+
+	public void setContactphone(String contactphone) {
+		this.contactphone = contactphone;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+
+	public String getFather() {
+		return father;
+	}
+
+
+	public void setFather(String father) {
+		this.father = father;
+	}
+
+
+	public String getFatherphone() {
+		return fatherphone;
+	}
+
+
+	public void setFatherphone(String fatherphone) {
+		this.fatherphone = fatherphone;
+	}
+
+
+	public String getMather() {
+		return mather;
+	}
+
+
+	public void setMather(String mather) {
+		this.mather = mather;
+	}
+
+
+	public String getMatherphone() {
+		return matherphone;
+	}
+
+
+	public void setMatherphone(String matherphone) {
+		this.matherphone = matherphone;
+	}
+
+
+	public Integer getFettle() {
+		return fettle;
+	}
+
+
+	public void setFettle(Integer fettle) {
+		this.fettle = fettle;
+	}
+
+
+	public String getRemark() {
+		return remark;
+	}
+
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+
+	public Long getcId() {
+		return cId;
+	}
+
+
+	public void setcId(Long cId) {
+		this.cId = cId;
+	}
+
+
+	public String getSituation() {
+		return situation;
+	}
+
+
+	public void setSituation(String situation) {
+		this.situation = situation;
+	}
+
+
+	public Fclass getFclass() {
+		return fclass;
+	}
+
+
+	public void setFclass(Fclass fclass) {
+		this.fclass = fclass;
+	}
+
 
 	@Override
 	public String toString() {
@@ -209,7 +296,10 @@ public class Student {
 				+ ", email=" + email + ", birthday=" + birthday + ", idCard=" + idCard + ", contact=" + contact
 				+ ", contactphone=" + contactphone + ", address=" + address + ", postcode=" + postcode + ", father="
 				+ father + ", fatherphone=" + fatherphone + ", mather=" + mather + ", matherphone=" + matherphone
-				+ ", fettle=" + fettle + ", remark=" + remark + ", cId=" + cId + ", situation=" + situation + "]";
+				+ ", fettle=" + fettle + ", remark=" + remark + ", cId=" + cId + ", situation=" + situation
+				+ ", fclass=" + fclass + "]";
 	}
+    
+    
     
 }

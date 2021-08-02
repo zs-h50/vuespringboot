@@ -27,4 +27,7 @@ public interface HouseHoldMapper {
     int updateByPrimaryKeySelective(HouseHold record);
 
     int updateByPrimaryKey(HouseHold record);
+    
+    List<HouseHold> getAllhouse();
+    
 }
