@@ -17,7 +17,30 @@
 	    <result column="c_fettle" jdbcType="INTEGER" property="cFettle" />
 	    <result column="c_remark" jdbcType="VARCHAR" property="cRemark" />
     </association>
+    <association property="teacher" javaType="Teacher">
+    	<id column="t_id" jdbcType="BIGINT" property="tId" />
+	    <result column="t_no" jdbcType="VARCHAR" property="tNo" />
+	    <result column="t_name" jdbcType="VARCHAR" property="tName" />
+	    <result column="t_gender" jdbcType="INTEGER" property="tGender" />
+	    <result column="t_phone" jdbcType="VARCHAR" property="tPhone" />
+	    <result column="t_email" jdbcType="VARCHAR" property="tEmail" />
+	    <result column="t_birthday" jdbcType="DATE" property="tBirthday" />
+	    <result column="t_card" jdbcType="VARCHAR" property="tCard" />
+	    <result column="t_school" jdbcType="VARCHAR" property="tSchool" />
+	    <result column="t_year" jdbcType="INTEGER" property="tYear" />
+	    <result column="t_education" jdbcType="INTEGER" property="tEducation" />
+	    <result column="t_degree" jdbcType="INTEGER" property="tDegree" />
+	    <result column="t_major" jdbcType="VARCHAR" property="tMajor" />
+	    <result column="t_fettle" jdbcType="INTEGER" property="tFettle" />
+	    <result column="t_remark" jdbcType="VARCHAR" property="tRemark" />
+    </association>
+    <association property="fclass" javaType="Fclass">
+	    <id column="c_id" jdbcType="BIGINT" property="cId" />
+	    <result column="classname" jdbcType="VARCHAR" property="classname" />
+	    <result column="c_number" jdbcType="INTEGER" property="cNumber" />
+    </association>
   </resultMap>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -265,7 +288,15 @@
   
   
   <select id="getAll" resultMap="BaseResultMap">
-  		select e.e_id, e.c_id, e.t_id, e.e_year, e.e_semester, e.e_fettle, e.e_remark, e.course_id,c.c_id,c.c_no,c.c_name from education as e left join course as c on c.c_id = course_id
+  		select e.e_id, e.c_id, e.t_id, e.e_year, e.e_semester, e.e_fettle, e.e_remark, e.course_id,c.c_id,
+  		c.c_no,c.c_name,f.c_id,f.classname,f.c_number,t.t_id,t.t_name 
+  		from education as e 
+  		left join course as c 
+  		on c.c_id = course_id
+  		left join fclass as f
+  		on e.c_id = f.c_id
+  		left join teacher as t
+  		on t.t_id = e.t_id
   </select>
   
   

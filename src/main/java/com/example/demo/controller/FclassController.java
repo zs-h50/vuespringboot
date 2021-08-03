@@ -1,11 +1,15 @@
 package com.example.demo.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,7 +31,6 @@ public class FclassController {
 	public Result<Fclass> GetAll(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum){
 		System.out.println("查询数据中..........");
 		//pageNum 当前页码
-//		datas = "%"+datas+"%";
 		PageHelper.startPage(pageNum,8);
 		List<Fclass> lists = fclassService.GetAll();
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
@@ -36,17 +39,63 @@ public class FclassController {
 //		System.out.println("查询成功！！");
 		return Result.success(lists);
 	}
-	
-	@GetMapping("/admin/fclass/select/{datas}")
+	//@RequestParam(defaultValue = "")
+	@RequestMapping("/admin/fclass/select/search")
 	public Result<Fclass> GetSelect(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
-			@PathVariable String datas){
+			@RequestBody String classname){
 		PageHelper.startPage(pageNum,8);
-		datas = "%"+datas+"%";
-		List<Fclass> lists = fclassService.getOne(datas);
+		
+		System.out.println(classname);
+		if (classname.equals(" ")) {
+			classname = "%";
+		}else {
+			classname = "%"+classname+"%";
+		}
+		List<Fclass> lists = fclassService.getOne(classname);
+//		Iterator iterator  = lists.iterator();
+//		while(iterator.hasNext()) {
+//			System.out.println(iterator.next());
+//		}
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Fclass> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);
-		return Result.success(null);
+		return Result.success(lists);
+	}
+	
+	/**
+	 * 添加
+	 * @param houseHold
+	 * @return
+	 */
+
+	@PostMapping("/admin/fclass/add")
+	public Result getAdd(@RequestBody Fclass fclass) {
+		fclassService.insertSelective(fclass);
+		return Result.success();
+	}
+	
+	/**
+	 * 删除
+	 * @param id
+	 * @return
+	 */
+
+	@DeleteMapping("/admin/fclass/delete/{id}")
+	public Result DelFclass(@PathVariable Long id) {
+		fclassService.deleteByPrimaryKey(id);
+		return Result.success();
+	}
+	
+	/**
+	 * 改
+	 * @param houseHold
+	 * @return
+	 */
+
+	@PostMapping("/admin/fclass/update")
+	public Result updateByPrimary(@RequestBody Fclass fclass) {
+		fclassService.updateByPrimaryKeySelective(fclass);
+		return Result.success();
 	}
 	
 }

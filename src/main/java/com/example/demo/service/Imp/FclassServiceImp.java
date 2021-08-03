@@ -23,9 +23,27 @@ public class FclassServiceImp implements FclassService {
 	}
 
 	@Override
-	public List<Fclass> getOne(String datas) {
+	public List<Fclass> getOne(String classname) {
 		// TODO Auto-generated method stub
-		return fclassMapper.getOne(datas);
+		return fclassMapper.getOne(classname);
+	}
+
+	@Override
+	public int insertSelective(Fclass record) {
+		// TODO Auto-generated method stub
+		return fclassMapper.insertSelective(record);
+	}
+
+	@Override
+	public int deleteByPrimaryKey(Long cId) {
+		// TODO Auto-generated method stub
+		return fclassMapper.deleteByPrimaryKey(cId);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(Fclass record) {
+		// TODO Auto-generated method stub
+		return fclassMapper.updateByPrimaryKeySelective(record);
 	}
 
 	

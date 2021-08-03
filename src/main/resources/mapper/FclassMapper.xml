@@ -190,10 +190,10 @@
   </update>
   
   <select id="GetAll" resultMap="BaseResultMap">
-  		select f.c_id, f.classname, f.c_number,e.e_year from fclass as f left join education as e on f.c_id = e.c_id 
+  		select * from fclass 
   </select>
     
   <select id="getOne" resultMap="BaseResultMap">
-  		select f.c_id, f.classname, f.c_number,e.e_year from fclass as f left join education as e on f.c_id = e.c_id where f.classname like #{classname}
+  		select * from fclass where classname like #{classname}
   </select>
 </mapper>

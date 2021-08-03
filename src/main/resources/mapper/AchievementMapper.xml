@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AchievementMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.Achievement">
+    <id column="a_id" jdbcType="BIGINT" property="aId" />
+    <result column="s_id" jdbcType="BIGINT" property="sId" />
+    <result column="c_id" jdbcType="BIGINT" property="cId" />
+    <result column="a_years" jdbcType="INTEGER" property="aYears" />
+    <result column="a_semester" jdbcType="INTEGER" property="aSemester" />
+    <result column="a_score" jdbcType="INTEGER" property="aScore" />
+    <result column="a_remark" jdbcType="VARCHAR" property="aRemark" />
+    <association property="tc" javaType="TC">
+    	<id column="tc_id" jdbcType="BIGINT" property="tcId" />
+	    <result column="t_id" jdbcType="BIGINT" property="sId" />
+	    <result column="c_id" jdbcType="BIGINT" property="cId" />
+    </association>
+    <association property="student" javaType="Student">
+    	<id column="s_id" jdbcType="BIGINT" property="sId" />
+	    <result column="s_no" jdbcType="VARCHAR" property="sNo" />
+	    <result column="s_name" jdbcType="VARCHAR" property="sName" />
+	    <result column="gender" jdbcType="INTEGER" property="gender" />
+	    <result column="s_phone" jdbcType="VARCHAR" property="sPhone" />
+	    <result column="email" jdbcType="VARCHAR" property="email" />
+	    <result column="birthday" jdbcType="DATE" property="birthday" />
+	    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+	    <result column="contact" jdbcType="VARCHAR" property="contact" />
+	    <result column="contactphone" jdbcType="VARCHAR" property="contactphone" />
+	    <result column="address" jdbcType="VARCHAR" property="address" />
+	    <result column="postcode" jdbcType="VARCHAR" property="postcode" />
+	    <result column="father" jdbcType="VARCHAR" property="father" />
+	    <result column="fatherphone" jdbcType="VARCHAR" property="fatherphone" />
+	    <result column="mather" jdbcType="VARCHAR" property="mather" />
+	    <result column="matherphone" jdbcType="VARCHAR" property="matherphone" />
+	    <result column="fettle" jdbcType="INTEGER" property="fettle" />
+	    <result column="remark" jdbcType="VARCHAR" property="remark" />
+	    <result column="c_id" property="cId"/>
+    </association>
+    <association property="teacher" javaType="Teacher">
+    	<id column="t_id" jdbcType="BIGINT" property="tId" />
+	    <result column="t_no" jdbcType="VARCHAR" property="tNo" />
+	    <result column="t_name" jdbcType="VARCHAR" property="tName" />
+	    <result column="t_gender" jdbcType="INTEGER" property="tGender" />
+	    <result column="t_phone" jdbcType="VARCHAR" property="tPhone" />
+	    <result column="t_email" jdbcType="VARCHAR" property="tEmail" />
+	    <result column="t_birthday" jdbcType="DATE" property="tBirthday" />
+	    <result column="t_card" jdbcType="VARCHAR" property="tCard" />
+	    <result column="t_school" jdbcType="VARCHAR" property="tSchool" />
+	    <result column="t_year" jdbcType="INTEGER" property="tYear" />
+	    <result column="t_education" jdbcType="INTEGER" property="tEducation" />
+	    <result column="t_degree" jdbcType="INTEGER" property="tDegree" />
+	    <result column="t_major" jdbcType="VARCHAR" property="tMajor" />
+	    <result column="t_fettle" jdbcType="INTEGER" property="tFettle" />
+	    <result column="t_remark" jdbcType="VARCHAR" property="tRemark" />
+    </association>
+    <association property="course" javaType="Course">
+    	 <id column="c_id" jdbcType="BIGINT" property="cId" />
+	    <result column="c_no" jdbcType="VARCHAR" property="cNo" />
+	    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+	    <result column="c_fettle" jdbcType="INTEGER" property="cFettle" />
+	    <result column="c_remark" jdbcType="VARCHAR" property="cRemark" />
+    </association>
+    <association property="fclass" javaType="Fclass">
+    	<id column="c_id" jdbcType="BIGINT" property="cId" />
+	    <result column="classname" jdbcType="VARCHAR" property="classname" />
+	    <result column="c_number" jdbcType="INTEGER" property="cNumber" />
+    </association>
+  </resultMap>
+  
+  
+  
+  
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    a_id, s_id, c_id, a_years, a_semester, a_score, a_remark
+  </sql>
+  
+    <select id="GetAll" resultMap="BaseResultMap">
+  		select a.a_id, a.s_id, a.c_id, a.a_years, a.a_semester, a.a_score, a.a_remark,
+  		s.s_no,s_name,
+  		f.classname,c.c_no,c.c_name,t.t_name
+  		from achievement as a
+  		left join student as s on a.s_id = s.s_id
+  		left join fclass as f on s.c_id = f.c_id
+  		left join tc as tcs on a.c_id = tcs.c_id
+  		left join course as c on c.c_id = tcs.c_id
+  		left join teacher as t on t.t_id = tcs.t_id
+  	</select>
+  	
+  	<select id="GetSome" resultMap="BaseResultMap">
+	  	select a.a_id, a.s_id, a.c_id, a.a_years, a.a_semester, a.a_score, a.a_remark,
+  		s.s_no,s_name,
+  		f.classname,c.c_no,c.c_name,t.t_name
+  		from achievement as a
+  		left join student as s on a.s_id = s.s_id
+  		left join fclass as f on s.c_id = f.c_id
+  		left join tc as tcs on a.c_id = tcs.c_id
+  		left join course as c on c.c_id = tcs.c_id
+  		left join teacher as t on t.t_id = tcs.t_id
+	  	where s.s_name like #{data}
+  	</select>
+  
+  <select id="selectByExample" parameterType="com.example.demo.pojo.AchievementExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from achievement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from achievement
+    where a_id = #{aId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from achievement
+    where a_id = #{aId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.pojo.AchievementExample">
+    delete from achievement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.pojo.Achievement">
+    insert into achievement (a_id, s_id, c_id, a_years, 
+      a_semester, a_score, a_remark
+      )
+    values (#{aId,jdbcType=BIGINT}, #{sId,jdbcType=BIGINT}, #{cId,jdbcType=BIGINT}, #{aYears,jdbcType=INTEGER}, 
+      #{aSemester,jdbcType=INTEGER}, #{aScore,jdbcType=INTEGER}, #{aRemark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.pojo.Achievement">
+    insert into achievement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        a_id,
+      </if>
+      <if test="sId != null">
+        s_id,
+      </if>
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="aYears != null">
+        a_years,
+      </if>
+      <if test="aSemester != null">
+        a_semester,
+      </if>
+      <if test="aScore != null">
+        a_score,
+      </if>
+      <if test="aRemark != null">
+        a_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        #{aId,jdbcType=BIGINT},
+      </if>
+      <if test="sId != null">
+        #{sId,jdbcType=BIGINT},
+      </if>
+      <if test="cId != null">
+        #{cId,jdbcType=BIGINT},
+      </if>
+      <if test="aYears != null">
+        #{aYears,jdbcType=INTEGER},
+      </if>
+      <if test="aSemester != null">
+        #{aSemester,jdbcType=INTEGER},
+      </if>
+      <if test="aScore != null">
+        #{aScore,jdbcType=INTEGER},
+      </if>
+      <if test="aRemark != null">
+        #{aRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.pojo.AchievementExample" resultType="java.lang.Long">
+    select count(*) from achievement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update achievement
+    <set>
+      <if test="record.aId != null">
+        a_id = #{record.aId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sId != null">
+        s_id = #{record.sId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cId != null">
+        c_id = #{record.cId,jdbcType=BIGINT},
+      </if>
+      <if test="record.aYears != null">
+        a_years = #{record.aYears,jdbcType=INTEGER},
+      </if>
+      <if test="record.aSemester != null">
+        a_semester = #{record.aSemester,jdbcType=INTEGER},
+      </if>
+      <if test="record.aScore != null">
+        a_score = #{record.aScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.aRemark != null">
+        a_remark = #{record.aRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update achievement
+    set a_id = #{record.aId,jdbcType=BIGINT},
+      s_id = #{record.sId,jdbcType=BIGINT},
+      c_id = #{record.cId,jdbcType=BIGINT},
+      a_years = #{record.aYears,jdbcType=INTEGER},
+      a_semester = #{record.aSemester,jdbcType=INTEGER},
+      a_score = #{record.aScore,jdbcType=INTEGER},
+      a_remark = #{record.aRemark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.pojo.Achievement">
+    update achievement
+    <set>
+      <if test="sId != null">
+        s_id = #{sId,jdbcType=BIGINT},
+      </if>
+      <if test="cId != null">
+        c_id = #{cId,jdbcType=BIGINT},
+      </if>
+      <if test="aYears != null">
+        a_years = #{aYears,jdbcType=INTEGER},
+      </if>
+      <if test="aSemester != null">
+        a_semester = #{aSemester,jdbcType=INTEGER},
+      </if>
+      <if test="aScore != null">
+        a_score = #{aScore,jdbcType=INTEGER},
+      </if>
+      <if test="aRemark != null">
+        a_remark = #{aRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.pojo.Achievement">
+    update achievement
+    set s_id = #{sId,jdbcType=BIGINT},
+      c_id = #{cId,jdbcType=BIGINT},
+      a_years = #{aYears,jdbcType=INTEGER},
+      a_semester = #{aSemester,jdbcType=INTEGER},
+      a_score = #{aScore,jdbcType=INTEGER},
+      a_remark = #{aRemark,jdbcType=VARCHAR}
+    where a_id = #{aId,jdbcType=BIGINT}
+  </update>
+  
+
+  
+  
+</mapper>
