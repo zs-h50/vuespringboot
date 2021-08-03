@@ -22,84 +22,119 @@ public class HouseHold {
     private Integer hFettle;	//状态(烈士家庭，离异家庭，正常)
 
     private String hRemark; //备注
+    
+    private Student student;
 
-    public Long gethId() {
-        return hId;
-    }
+	public Long gethId() {
+		return hId;
+	}
 
-    public void sethId(Long hId) {
-        this.hId = hId;
-    }
+	public void sethId(Long hId) {
+		this.hId = hId;
+	}
 
-    public Long getsId() {
-        return sId;
-    }
+	public Long getsId() {
+		return sId;
+	}
 
-    public void setsId(Long sId) {
-        this.sId = sId;
-    }
+	public void setsId(Long sId) {
+		this.sId = sId;
+	}
 
-    public Integer getGenre() {
-        return genre;
-    }
+	public Integer getGenre() {
+		return genre;
+	}
 
-    public void setGenre(Integer genre) {
-        this.genre = genre;
-    }
+	public void setGenre(Integer genre) {
+		this.genre = genre;
+	}
 
-    public String gethName() {
-        return hName;
-    }
+	public String gethName() {
+		return hName;
+	}
 
-    public void sethName(String hName) {
-        this.hName = hName == null ? null : hName.trim();
-    }
+	public void sethName(String hName) {
+		this.hName = hName;
+	}
 
-    public Integer gethGender() {
-        return hGender;
-    }
+	public Integer gethGender() {
+		return hGender;
+	}
 
-    public void sethGender(Integer hGender) {
-        this.hGender = hGender;
-    }
+	public void sethGender(Integer hGender) {
+		this.hGender = hGender;
+	}
 
-    public String gethPhone() {
-        return hPhone;
-    }
+	public String gethPhone() {
+		return hPhone;
+	}
 
-    public void sethPhone(String hPhone) {
-        this.hPhone = hPhone == null ? null : hPhone.trim();
-    }
+	public void sethPhone(String hPhone) {
+		this.hPhone = hPhone;
+	}
 
-    public Date gethBirthday() {
-        return hBirthday;
-    }
+	public Date gethBirthday() {
+		return hBirthday;
+	}
 
-    public void sethBirthday(Date hBirthday) {
-        this.hBirthday = hBirthday;
-    }
+	public void sethBirthday(Date hBirthday) {
+		this.hBirthday = hBirthday;
+	}
 
-    public String gethCard() {
-        return hCard;
-    }
+	public String gethCard() {
+		return hCard;
+	}
 
-    public void sethCard(String hCard) {
-        this.hCard = hCard == null ? null : hCard.trim();
-    }
+	public void sethCard(String hCard) {
+		this.hCard = hCard;
+	}
 
-    public Integer gethFettle() {
-        return hFettle;
-    }
+	public Integer gethFettle() {
+		return hFettle;
+	}
 
-    public void sethFettle(Integer hFettle) {
-        this.hFettle = hFettle;
-    }
+	public void sethFettle(Integer hFettle) {
+		this.hFettle = hFettle;
+	}
 
-    public String gethRemark() {
-        return hRemark;
-    }
+	public String gethRemark() {
+		return hRemark;
+	}
 
-    public void sethRemark(String hRemark) {
-        this.hRemark = hRemark == null ? null : hRemark.trim();
-    }
+	public void sethRemark(String hRemark) {
+		this.hRemark = hRemark;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	@Override
+	public String toString() {
+		return "HouseHold [hId=" + hId + ", sId=" + sId + ", genre=" + genre + ", hName=" + hName + ", hGender="
+				+ hGender + ", hPhone=" + hPhone + ", hBirthday=" + hBirthday + ", hCard=" + hCard + ", hFettle="
+				+ hFettle + ", hRemark=" + hRemark + ", student=" + student + "]";
+	}
+
+	public HouseHold(Long hId, Long sId, Integer genre, String hName, Integer hGender, String hPhone, Date hBirthday,
+			String hCard, Integer hFettle, String hRemark, Student student) {
+		super();
+		this.hId = hId;
+		this.sId = sId;
+		this.genre = genre;
+		this.hName = hName;
+		this.hGender = hGender;
+		this.hPhone = hPhone;
+		this.hBirthday = hBirthday;
+		this.hCard = hCard;
+		this.hFettle = hFettle;
+		this.hRemark = hRemark;
+		this.student = student;
+	}
+
+	public HouseHold() {}
 }

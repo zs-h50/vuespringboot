@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.mapper.FclassMapper">
-  <resultMap id="BaseResultMap" type="com.example.demo.pojo.Fclass">
+<mapper namespace="com.example.demo.mapper.CourseMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.Course">
     <id column="c_id" jdbcType="BIGINT" property="cId" />
-    <result column="classname" jdbcType="VARCHAR" property="classname" />
-    <result column="c_number" jdbcType="INTEGER" property="cNumber" />
-    <association property="education" javaType="Education">
-    	 <id column="e_id" jdbcType="BIGINT" property="eId" />
-	    <result column="c_id" jdbcType="BIGINT" property="cId" />
-	    <result column="t_id" jdbcType="BIGINT" property="tId" />
-	    <result column="e_year" jdbcType="INTEGER" property="eYear" />
-	    <result column="e_semester" jdbcType="INTEGER" property="eSemester" />
-	    <result column="e_fettle" jdbcType="INTEGER" property="eFettle" />
-	    <result column="e_remark" jdbcType="VARCHAR" property="eRemark" />
-	    <result column="course_id" jdbcType="INTEGER" property="courseId" />
-    </association>
+    <result column="c_no" jdbcType="VARCHAR" property="cNo" />
+    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+    <result column="c_fettle" jdbcType="INTEGER" property="cFettle" />
+    <result column="c_remark" jdbcType="VARCHAR" property="cRemark" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    c_id, classname, c_number
+    c_id, c_no, c_name, c_fettle, c_remark
   </sql>
-  <select id="selectByExample" parameterType="com.example.demo.pojo.FclassExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.example.demo.pojo.CourseExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from fclass
+    from course
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -94,67 +86,85 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from fclass
+    from course
     where c_id = #{cId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from fclass
+    delete from course
     where c_id = #{cId,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.example.demo.pojo.FclassExample">
-    delete from fclass
+  <delete id="deleteByExample" parameterType="com.example.demo.pojo.CourseExample">
+    delete from course
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.demo.pojo.Fclass">
-    insert into fclass (c_id, classname, c_number
-      )
-    values (#{cId,jdbcType=BIGINT}, #{classname,jdbcType=VARCHAR}, #{cNumber,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.example.demo.pojo.Course">
+    insert into course (c_id, c_no, c_name, 
+      c_fettle, c_remark)
+    values (#{cId,jdbcType=BIGINT}, #{cNo,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR}, 
+      #{cFettle,jdbcType=INTEGER}, #{cRemark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.demo.pojo.Fclass">
-    insert into fclass
+  <insert id="insertSelective" parameterType="com.example.demo.pojo.Course">
+    insert into course
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cId != null">
         c_id,
       </if>
-      <if test="classname != null">
-        classname,
+      <if test="cNo != null">
+        c_no,
       </if>
-      <if test="cNumber != null">
-        c_number,
+      <if test="cName != null">
+        c_name,
+      </if>
+      <if test="cFettle != null">
+        c_fettle,
+      </if>
+      <if test="cRemark != null">
+        c_remark,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="cId != null">
         #{cId,jdbcType=BIGINT},
       </if>
-      <if test="classname != null">
-        #{classname,jdbcType=VARCHAR},
+      <if test="cNo != null">
+        #{cNo,jdbcType=VARCHAR},
       </if>
-      <if test="cNumber != null">
-        #{cNumber,jdbcType=INTEGER},
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cFettle != null">
+        #{cFettle,jdbcType=INTEGER},
+      </if>
+      <if test="cRemark != null">
+        #{cRemark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.demo.pojo.FclassExample" resultType="java.lang.Long">
-    select count(*) from fclass
+  <select id="countByExample" parameterType="com.example.demo.pojo.CourseExample" resultType="java.lang.Long">
+    select count(*) from course
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update fclass
+    update course
     <set>
       <if test="record.cId != null">
         c_id = #{record.cId,jdbcType=BIGINT},
       </if>
-      <if test="record.classname != null">
-        classname = #{record.classname,jdbcType=VARCHAR},
+      <if test="record.cNo != null">
+        c_no = #{record.cNo,jdbcType=VARCHAR},
       </if>
-      <if test="record.cNumber != null">
-        c_number = #{record.cNumber,jdbcType=INTEGER},
+      <if test="record.cName != null">
+        c_name = #{record.cName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cFettle != null">
+        c_fettle = #{record.cFettle,jdbcType=INTEGER},
+      </if>
+      <if test="record.cRemark != null">
+        c_remark = #{record.cRemark,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -162,38 +172,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update fclass
+    update course
     set c_id = #{record.cId,jdbcType=BIGINT},
-      classname = #{record.classname,jdbcType=VARCHAR},
-      c_number = #{record.cNumber,jdbcType=INTEGER}
+      c_no = #{record.cNo,jdbcType=VARCHAR},
+      c_name = #{record.cName,jdbcType=VARCHAR},
+      c_fettle = #{record.cFettle,jdbcType=INTEGER},
+      c_remark = #{record.cRemark,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.pojo.Fclass">
-    update fclass
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.pojo.Course">
+    update course
     <set>
-      <if test="classname != null">
-        classname = #{classname,jdbcType=VARCHAR},
+      <if test="cNo != null">
+        c_no = #{cNo,jdbcType=VARCHAR},
       </if>
-      <if test="cNumber != null">
-        c_number = #{cNumber,jdbcType=INTEGER},
+      <if test="cName != null">
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cFettle != null">
+        c_fettle = #{cFettle,jdbcType=INTEGER},
+      </if>
+      <if test="cRemark != null">
+        c_remark = #{cRemark,jdbcType=VARCHAR},
       </if>
     </set>
     where c_id = #{cId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.pojo.Fclass">
-    update fclass
-    set classname = #{classname,jdbcType=VARCHAR},
-      c_number = #{cNumber,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.pojo.Course">
+    update course
+    set c_no = #{cNo,jdbcType=VARCHAR},
+      c_name = #{cName,jdbcType=VARCHAR},
+      c_fettle = #{cFettle,jdbcType=INTEGER},
+      c_remark = #{cRemark,jdbcType=VARCHAR}
     where c_id = #{cId,jdbcType=BIGINT}
   </update>
-  
-  <select id="GetAll" resultMap="BaseResultMap">
-  		select f.c_id, f.classname, f.c_number,e.e_year from fclass as f left join education as e on f.c_id = e.c_id 
-  </select>
-    
-  <select id="getOne" resultMap="BaseResultMap">
-  		select f.c_id, f.classname, f.c_number,e.e_year from fclass as f left join education as e on f.c_id = e.c_id where f.classname like #{classname}
-  </select>
 </mapper>

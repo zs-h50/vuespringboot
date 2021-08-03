@@ -64,10 +64,22 @@ public class StudentController {
 		return Result.success(lists);
 	}
 	
+	/**
+	 * 删除
+	 * @param id
+	 * @return
+	 */
 	@ResponseBody
 	@DeleteMapping("/admin/studentinfo/delete/{id}")
 	public Result DelStu(@PathVariable Long id) {
 		studentService.deleteByPrimaryKey(id);
+		return Result.success();
+	}
+	
+	@ResponseBody
+	@PostMapping("/admin/studentinfo/update")
+	public Result UpdataStu(@RequestBody Student student) {
+		studentService.updateByPrimaryKeySelective(student);
 		return Result.success();
 	}
 }

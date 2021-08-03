@@ -367,4 +367,9 @@
       t_remark = #{tRemark,jdbcType=VARCHAR}
     where t_id = #{tId,jdbcType=BIGINT}
   </update>
+  
+  <select id="getAllList" resultMap="BaseResultMap">
+  		select * from teacher
+  </select>
+  
 </mapper>

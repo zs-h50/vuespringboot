@@ -36,6 +36,12 @@ public class StudentServiceImp implements StudentService{
 		// TODO Auto-generated method stub
 		return studentMapper.deleteByPrimaryKey(sId);
 	}
+
+	@Override
+	public int updateByPrimaryKeySelective(Student record) {
+		// TODO Auto-generated method stub
+		return studentMapper.updateByPrimaryKeySelective(record);
+	}
 	
 	
 	

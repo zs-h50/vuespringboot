@@ -39,6 +39,12 @@ public class HouseServiceImp implements HouseService{
 		return houseMapper.deleteByPrimaryKey(hId);
 	}
 
+	@Override
+	public int updateByPrimaryKeySelective(HouseHold record) {
+		// TODO Auto-generated method stub
+		return houseMapper.updateByPrimaryKeySelective(record);
+	}
+
 	
 	
 	

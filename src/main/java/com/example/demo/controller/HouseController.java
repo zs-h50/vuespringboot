@@ -64,4 +64,16 @@ public class HouseController {
 		return Result.success();
 	}
 	
+	/**
+	 * 改
+	 * @param houseHold
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/admin/house/updata")
+	public Result updateByPrimary(@RequestBody HouseHold houseHold) {
+		houseService.updateByPrimaryKeySelective(houseHold);
+		return Result.success();
+	}
+	
 }

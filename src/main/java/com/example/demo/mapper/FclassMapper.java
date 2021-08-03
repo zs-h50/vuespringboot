@@ -27,4 +27,8 @@ public interface FclassMapper {
     int updateByPrimaryKeySelective(Fclass record);
 
     int updateByPrimaryKey(Fclass record);
+    
+    List<Fclass> GetAll();
+    
+    List<Fclass> getOne(String datas);
 }

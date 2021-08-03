@@ -25,4 +25,11 @@ public interface HouseService {
 	 * @return
 	 */
 	int deleteByPrimaryKey(Long hId);
+	
+	/**
+	 * 修改
+	 * @param record
+	 * @return
+	 */
+	int updateByPrimaryKeySelective(HouseHold record);
 }

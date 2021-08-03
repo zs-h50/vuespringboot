@@ -24,4 +24,11 @@ public interface StudentService {
 	 * @return
 	 */
 	int deleteByPrimaryKey(Long sId);
+	
+	/**
+	 * 修改信息
+	 * @param record
+	 * @return
+	 */
+	int updateByPrimaryKeySelective(Student record);
 }

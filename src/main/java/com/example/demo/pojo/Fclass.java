@@ -6,44 +6,59 @@ public class Fclass {
     private String classname;
 
     private Integer cNumber;
+    
+    private Education education;
 
     public Fclass() {}
+
     
-    public Fclass(Long cId, String classname, Integer cNumber) {
+	public Fclass(Long cId, String classname, Integer cNumber, Education education) {
 		super();
 		this.cId = cId;
 		this.classname = classname;
 		this.cNumber = cNumber;
+		this.education = education;
 	}
 
+
 	public Long getcId() {
-        return cId;
-    }
+		return cId;
+	}
 
-    public void setcId(Long cId) {
-        this.cId = cId;
-    }
+	public void setcId(Long cId) {
+		this.cId = cId;
+	}
 
-    public String getClassname() {
-        return classname;
-    }
+	public String getClassname() {
+		return classname;
+	}
 
-    public void setClassname(String classname) {
-        this.classname = classname == null ? null : classname.trim();
-    }
+	public void setClassname(String classname) {
+		this.classname = classname;
+	}
 
-    public Integer getcNumber() {
-        return cNumber;
-    }
+	public Integer getcNumber() {
+		return cNumber;
+	}
 
-    public void setcNumber(Integer cNumber) {
-        this.cNumber = cNumber;
-    }
+	public void setcNumber(Integer cNumber) {
+		this.cNumber = cNumber;
+	}
+
+	public Education getEducation() {
+		return education;
+	}
+
+	public void setEducation(Education education) {
+		this.education = education;
+	}
 
 	@Override
 	public String toString() {
-		return "Fclass [cId=" + cId + ", classname=" + classname + ", cNumber=" + cNumber + "]";
+		return "Fclass [cId=" + cId + ", classname=" + classname + ", cNumber=" + cNumber + ", education=" + education
+				+ "]";
 	}
+    
     
     
 }
