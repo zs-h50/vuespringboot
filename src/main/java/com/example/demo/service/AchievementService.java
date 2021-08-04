@@ -9,4 +9,6 @@ public interface AchievementService {
 	 List<Achievement> GetAll();
 	 
 	 List<Achievement> GetSome(String data);
+	 
+	 List<Achievement> GetTeacherExam(String account);
 }

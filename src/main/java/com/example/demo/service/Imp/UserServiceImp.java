@@ -60,6 +60,12 @@ public class UserServiceImp implements UserService {
 		return userMapper.UpdateByUser(user);
 	}
 
+	@Override
+	public int UpdateUser(String account, String password) {
+		// TODO Auto-generated method stub
+		return userMapper.UpdateUser(account, password);
+	}
+
 	
 	
 }

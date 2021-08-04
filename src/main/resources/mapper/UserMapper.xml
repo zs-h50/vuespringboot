@@ -40,4 +40,11 @@
 		where id = #{id}
 	</update>
 	
+	<update id="UpdateUser" parameterType="java.lang.String" >
+	update user
+	set password = #{password}
+	where account = #{account}
+	</update>
+	
+	
 </mapper>    

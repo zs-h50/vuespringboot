@@ -57,5 +57,15 @@ public class AchievementController {
 		return Result.success(lists);
 	}
 	
+	@PostMapping("/teacher/exam/select")
+	public Result<Achievement> teacherExam(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+			@RequestBody String account){
+		System.out.println(account);
+		PageHelper.startPage(pageNum,8);
+		List<Achievement> lists = aService.GetTeacherExam(account);
+		PageInfo<Achievement> pageInfo = new PageInfo(lists);
+		model.addAttribute("pageInfo",pageInfo);
+		return Result.success(lists);
+	}
 	
 }

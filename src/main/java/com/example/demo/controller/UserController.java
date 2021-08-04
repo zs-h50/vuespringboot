@@ -140,6 +140,14 @@ public class UserController {
 			}
 			return Result.success();
 		}
-
+	}
+	
+	@PostMapping("/teacher/updats")
+	public Result UserUpdate(@RequestBody String account, @RequestBody String password) {
+		System.out.println("1111111111111111111111111");
+		System.out.println(account);
+		System.out.println(password);
+		userService.UpdateUser(account,password);
+		return Result.success();
 	}
 }

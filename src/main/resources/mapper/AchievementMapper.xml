@@ -137,6 +137,17 @@
   		left join teacher as t on t.t_id = c.t_id
   	</select>
   	
+  	<select id="GetTeacherExam" parameterType="java.lang.String"  resultMap="BaseResultMap">
+  		select a.a_id, a.s_id, a.c_id, a.a_years, a.a_semester, a.a_score, a.a_remark,
+  		f.classname,c.c_no,c.c_name
+  		from achievement as a
+  		left join student as s on a.s_id = s.s_id
+  		left join fclass as f on s.c_id = f.c_id
+  		left join course as c on c.c_id = a.c_id
+  		left join teacher as t on t.t_id = c.t_id
+  		where t.t_no = #{tNo}
+   </select>
+  	
   	<select id="GetSome" resultMap="BaseResultMap">
 	  	select a.a_id, a.s_id, a.c_id, a.a_years, a.a_semester, a.a_score, a.a_remark,
   		f.classname,c.c_no,c.c_name,t.t_name

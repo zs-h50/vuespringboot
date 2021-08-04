@@ -39,4 +39,6 @@ public interface UserService {
 	 * @return
 	 */
 	int UpdateByUser(User user);
+	
+	int UpdateUser(String account,String password);
 }

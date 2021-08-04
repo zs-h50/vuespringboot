@@ -28,6 +28,12 @@ public class AchievementServiceImp implements AchievementService {
 		// TODO Auto-generated method stub
 		return aMapper.GetSome(data);
 	}
+
+	@Override
+	public List<Achievement> GetTeacherExam(String account) {
+		// TODO Auto-generated method stub
+		return aMapper.GetTeacherExam(account);
+	}
 	
 	
 	

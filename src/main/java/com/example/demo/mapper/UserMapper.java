@@ -34,9 +34,15 @@ public interface UserMapper {
 	int DelUserById(String account);
 	
 	/**
-	 * 修改用户信息
+	 * 管理员修改用户信息
 	 * @param user
 	 * @return
 	 */
 	int UpdateByUser(User user);
+	
+	/**
+	 * 修改用户信息
+	 */
+	
+	int UpdateUser(String account,String password);
 }
