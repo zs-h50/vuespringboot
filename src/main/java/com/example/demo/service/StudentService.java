@@ -23,7 +23,7 @@ public interface StudentService {
 	 * @param sId
 	 * @return
 	 */
-	int deleteByPrimaryKey(Long sId);
+	int deleteByPrimaryKey(String sId);
 	
 	/**
 	 * 修改信息

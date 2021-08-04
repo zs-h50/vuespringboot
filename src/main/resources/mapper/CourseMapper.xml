@@ -3,6 +3,7 @@
 <mapper namespace="com.example.demo.mapper.CourseMapper">
   <resultMap id="BaseResultMap" type="com.example.demo.pojo.Course">
     <id column="c_id" jdbcType="BIGINT" property="cId" />
+    <result column="t_id" jdbcType="BIGINT" property="tId" />
     <result column="c_no" jdbcType="VARCHAR" property="cNo" />
     <result column="c_name" jdbcType="VARCHAR" property="cName" />
     <result column="c_fettle" jdbcType="INTEGER" property="cFettle" />
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    c_id, c_no, c_name, c_fettle, c_remark
+    c_id, t_id, c_no, c_name, c_fettle, c_remark
   </sql>
   <select id="selectByExample" parameterType="com.example.demo.pojo.CourseExample" resultMap="BaseResultMap">
     select
@@ -100,16 +101,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.demo.pojo.Course">
-    insert into course (c_id, c_no, c_name, 
-      c_fettle, c_remark)
-    values (#{cId,jdbcType=BIGINT}, #{cNo,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR}, 
-      #{cFettle,jdbcType=INTEGER}, #{cRemark,jdbcType=VARCHAR})
+    insert into course (c_id, t_id, c_no, 
+      c_name, c_fettle, c_remark
+      )
+    values (#{cId,jdbcType=BIGINT}, #{tId,jdbcType=BIGINT}, #{cNo,jdbcType=VARCHAR}, 
+      #{cName,jdbcType=VARCHAR}, #{cFettle,jdbcType=INTEGER}, #{cRemark,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.pojo.Course">
     insert into course
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cId != null">
         c_id,
+      </if>
+      <if test="tId != null">
+        t_id,
       </if>
       <if test="cNo != null">
         c_no,
@@ -127,6 +133,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="cId != null">
         #{cId,jdbcType=BIGINT},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=BIGINT},
       </if>
       <if test="cNo != null">
         #{cNo,jdbcType=VARCHAR},
@@ -154,6 +163,9 @@
       <if test="record.cId != null">
         c_id = #{record.cId,jdbcType=BIGINT},
       </if>
+      <if test="record.tId != null">
+        t_id = #{record.tId,jdbcType=BIGINT},
+      </if>
       <if test="record.cNo != null">
         c_no = #{record.cNo,jdbcType=VARCHAR},
       </if>
@@ -174,6 +186,7 @@
   <update id="updateByExample" parameterType="map">
     update course
     set c_id = #{record.cId,jdbcType=BIGINT},
+      t_id = #{record.tId,jdbcType=BIGINT},
       c_no = #{record.cNo,jdbcType=VARCHAR},
       c_name = #{record.cName,jdbcType=VARCHAR},
       c_fettle = #{record.cFettle,jdbcType=INTEGER},
@@ -185,6 +198,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.pojo.Course">
     update course
     <set>
+      <if test="tId != null">
+        t_id = #{tId,jdbcType=BIGINT},
+      </if>
       <if test="cNo != null">
         c_no = #{cNo,jdbcType=VARCHAR},
       </if>
@@ -202,7 +218,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.demo.pojo.Course">
     update course
-    set c_no = #{cNo,jdbcType=VARCHAR},
+    set t_id = #{tId,jdbcType=BIGINT},
+      c_no = #{cNo,jdbcType=VARCHAR},
       c_name = #{cName,jdbcType=VARCHAR},
       c_fettle = #{cFettle,jdbcType=INTEGER},
       c_remark = #{cRemark,jdbcType=VARCHAR}

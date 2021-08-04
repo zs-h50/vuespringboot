@@ -3,6 +3,8 @@ package com.example.demo.pojo;
 public class Course {
     private Long cId;
 
+    private Long tId;
+
     private String cNo;
 
     private String cName;
@@ -17,6 +19,14 @@ public class Course {
 
     public void setcId(Long cId) {
         this.cId = cId;
+    }
+
+    public Long gettId() {
+        return tId;
+    }
+
+    public void settId(Long tId) {
+        this.tId = tId;
     }
 
     public String getcNo() {

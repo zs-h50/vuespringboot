@@ -10,7 +10,7 @@ public interface StudentMapper {
 
     int deleteByExample(StudentExample example);
 
-    int deleteByPrimaryKey(Long sId);
+    int deleteByPrimaryKey(String sId);
 
     int insert(Student record);
 

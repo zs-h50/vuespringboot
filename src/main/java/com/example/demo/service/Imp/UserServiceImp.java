@@ -46,7 +46,7 @@ public class UserServiceImp implements UserService {
 	 * 删除用户
 	 */
 	@Override
-	public int DelUserById(Long id) {
+	public int DelUserById(String id) {
 		// TODO Auto-generated method stub
 		return userMapper.DelUserById(id);
 	}

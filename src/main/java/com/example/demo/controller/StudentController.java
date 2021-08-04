@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.pojo.Student;
 import com.example.demo.pojo.User;
 import com.example.demo.service.StudentService;
+import com.example.demo.service.UserService;
 import com.example.demo.utils.Result;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -26,8 +27,11 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
+	@Autowired 
+	private UserService userService;
+	
 	/**
-	 * 新增学生数据（还可以优化，学生信息里面包含父母，家庭里面也有，但是插入数据时应该把父母的放到家庭表中）
+	 * 新增学生数据
 	 * @param student
 	 * @return
 	 */
@@ -35,6 +39,11 @@ public class StudentController {
 	@PostMapping("/admin/studentinfo/add")
 	public Result AddStudent(@RequestBody Student student) {
 		System.out.println("正在插入数据到数据库！！！！！");
+		User user = new User();
+		user.setAccount(student.getsNo());
+		user.setPassword("123456");
+		user.setIdentity("1");
+		userService.AddUser(user);
 		int temp = studentService.insertSelective(student);
 		if (temp != 0) {
 			System.out.println("插入成功！");
@@ -71,7 +80,9 @@ public class StudentController {
 	 */
 	@ResponseBody
 	@DeleteMapping("/admin/studentinfo/delete/{id}")
-	public Result DelStu(@PathVariable Long id) {
+	public Result<?> DelStu(@PathVariable String id) {
+		System.out.println(id);
+		userService.DelUserById(id);
 		studentService.deleteByPrimaryKey(id);
 		return Result.success();
 	}

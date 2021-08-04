@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.TeacherMapper;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.pojo.Teacher;
+import com.example.demo.pojo.User;
 import com.example.demo.service.TeacherService;
 
 @Service
@@ -45,10 +47,18 @@ public class TeacherServiceImp implements TeacherService{
 	  * 删除
 	  */
 	@Override
-	public int deleteByPrimaryKey(Long tId) {
+	public int deleteByPrimaryKey(String tNo) {
 		// TODO Auto-generated method stub
-		return teacherMapper.deleteByPrimaryKey(tId);
+		return teacherMapper.deleteByPrimaryKey(tNo);
 	}
+
+	@Override
+	public List<Teacher> getTeacherLogin(String account) {
+		// TODO Auto-generated method stub
+		return teacherMapper.getTeacherLogin(account);
+	}
+
+
 	
 	
 	

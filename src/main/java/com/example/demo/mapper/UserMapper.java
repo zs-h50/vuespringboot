@@ -31,7 +31,7 @@ public interface UserMapper {
 	 * @param id
 	 * @return
 	 */
-	int DelUserById(Long id);
+	int DelUserById(String account);
 	
 	/**
 	 * 修改用户信息

@@ -109,7 +109,7 @@ public class UserController {
 	 */
 //	@ResponseBody
 	@DeleteMapping("/admin/operate/delete/{id}")
-	public Result DeleteUser(@PathVariable Long id) {
+	public Result DeleteUser(@PathVariable String id) {
 		System.out.println("要删除的用户id："+id);
 		int temp =  userService.DelUserById(id);
 		if (temp != 0 ) {
@@ -129,12 +129,17 @@ public class UserController {
 	@PutMapping("/admin/operate/update")
 	public Result UpdateUser(@RequestBody User user) {
 		System.out.println("进入修改信息");
-		int temp = userService.UpdateByUser(user);
-		if (temp != 0) {
-			System.out.println("修改成功！！！");
-		} else {
-			System.out.println("修改失败！！！");
+		if (user.getPassword() == null) {
+			return Result.error("300", "密码不能为空");
+		}else {
+			int temp = userService.UpdateByUser(user);
+			if (temp != 0) {
+				System.out.println("修改成功！！！");
+			} else {
+				System.out.println("修改失败！！！");
+			}
+			return Result.success();
 		}
-		return Result.success();
+
 	}
 }

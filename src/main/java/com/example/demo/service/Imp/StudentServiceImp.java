@@ -1,12 +1,15 @@
 package com.example.demo.service.Imp;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.StudentMapper;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.pojo.Student;
+import com.example.demo.pojo.User;
 import com.example.demo.service.StudentService;
 
 @Service
@@ -32,7 +35,7 @@ public class StudentServiceImp implements StudentService{
 	}
 
 	@Override
-	public int deleteByPrimaryKey(Long sId) {
+	public int deleteByPrimaryKey(String sId) {
 		// TODO Auto-generated method stub
 		return studentMapper.deleteByPrimaryKey(sId);
 	}

@@ -15,8 +15,6 @@ public class Achievement {
 
     private String aRemark;
     
-    private TC tc;
-    
     private Student student;
     
     private Teacher teacher;
@@ -30,7 +28,7 @@ public class Achievement {
 	}
 
 	public Achievement(Long aId, Long sId, Long cId, Integer aYears, Integer aSemester, Integer aScore, String aRemark,
-			TC tc, Student student, Teacher teacher, Course course, Fclass fclass) {
+			Student student, Teacher teacher, Course course, Fclass fclass) {
 		super();
 		this.aId = aId;
 		this.sId = sId;
@@ -39,7 +37,6 @@ public class Achievement {
 		this.aSemester = aSemester;
 		this.aScore = aScore;
 		this.aRemark = aRemark;
-		this.tc = tc;
 		this.student = student;
 		this.teacher = teacher;
 		this.course = course;
@@ -102,14 +99,6 @@ public class Achievement {
 		this.aRemark = aRemark;
 	}
 
-	public TC getTc() {
-		return tc;
-	}
-
-	public void setTc(TC tc) {
-		this.tc = tc;
-	}
-
 	public Student getStudent() {
 		return student;
 	}
@@ -145,10 +134,11 @@ public class Achievement {
 	@Override
 	public String toString() {
 		return "Achievement [aId=" + aId + ", sId=" + sId + ", cId=" + cId + ", aYears=" + aYears + ", aSemester="
-				+ aSemester + ", aScore=" + aScore + ", aRemark=" + aRemark + ", tc=" + tc + ", student=" + student
-				+ ", teacher=" + teacher + ", course=" + course + ", fclass=" + fclass + "]";
+				+ aSemester + ", aScore=" + aScore + ", aRemark=" + aRemark + ", student=" + student + ", teacher="
+				+ teacher + ", course=" + course + ", fclass=" + fclass + "]";
 	}
 
+	
 	
     
 }

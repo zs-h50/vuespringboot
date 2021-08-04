@@ -10,7 +10,7 @@ public interface TeacherMapper {
 
     int deleteByExample(TeacherExample example);
 
-    int deleteByPrimaryKey(Long tId);
+    int deleteByPrimaryKey(String tNo);
 
     int insert(Teacher record);
 
@@ -27,5 +27,8 @@ public interface TeacherMapper {
     int updateByPrimaryKeySelective(Teacher record);
 
     int updateByPrimaryKey(Teacher record);
+    
     List<Teacher> getAllList();
+    
+    List<Teacher> getTeacherLogin(String account);
 }

@@ -31,5 +31,7 @@ public interface TeacherService {
 	 * @param tId
 	 * @return
 	 */
-	int deleteByPrimaryKey(Long tId);
+	int deleteByPrimaryKey(String tNo);
+	
+	List<Teacher> getTeacherLogin(String account);
 }

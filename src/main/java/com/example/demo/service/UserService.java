@@ -32,7 +32,7 @@ public interface UserService {
 	 * @param id
 	 * @return
 	 */
-	int DelUserById(Long id);
+	int DelUserById(String id);
 	/**
 	 * 修改用户信息
 	 * @param user

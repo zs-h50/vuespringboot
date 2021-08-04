@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.pojo.Student;
 import com.example.demo.pojo.Teacher;
+import com.example.demo.pojo.User;
 import com.example.demo.service.TeacherService;
+import com.example.demo.service.UserService;
 import com.example.demo.utils.Result;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -25,6 +27,8 @@ public class TeacherController {
 
 	@Autowired
 	private TeacherService teacherService;
+	
+	@Autowired UserService userService;
 	/**
 	 * 查询全部老师的信息
 	 * @param model
@@ -48,6 +52,11 @@ public class TeacherController {
 	@PostMapping("/admin/teacher/add")
 	public Result AddTeacher(@RequestBody Teacher teacher) {
 		System.out.println("正在插入数据到数据库！！！！！");
+		User user = new User();
+		user.setAccount(teacher.gettNo());
+		user.setPassword("123456");
+		user.setIdentity("2");
+		userService.AddUser(user);
 		int temp = teacherService.insertSelective(teacher);
 		if (temp != 0) {
 			System.out.println("插入成功！");
@@ -64,8 +73,9 @@ public class TeacherController {
 	 * @return
 	 */
 	@DeleteMapping("/admin/teacher/delete/{id}")
-	public Result DelStu(@PathVariable Long id) {
-		teacherService.deleteByPrimaryKey(id);
+	public Result DelStu(@PathVariable String tNo) {
+		userService.DelUserById(tNo);
+		teacherService.deleteByPrimaryKey(tNo);
 		return Result.success();
 	}
 	
@@ -78,6 +88,22 @@ public class TeacherController {
 	public Result UpdataTea(@RequestBody Teacher teacher) {
 		teacherService.updateByPrimaryKeySelective(teacher);
 		return Result.success();
+	}
+	
+	
+	@PostMapping("/admin/teacher/select/one")
+	public Result<Teacher> getTeachers(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+			@RequestBody String account) {
+		System.out.println("查询数据中..........");
+		//pageNum 当前页码
+		System.out.println(account);
+		PageHelper.startPage(pageNum,8);
+		List<Teacher> lists = teacherService.getTeacherLogin(account);
+		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
+		PageInfo<Teacher> pageInfo = new PageInfo(lists);
+		model.addAttribute("pageInfo",pageInfo);
+//		System.out.println("查询成功！！");
+		return Result.success(lists);
 	}
 	
 }

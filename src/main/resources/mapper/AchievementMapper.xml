@@ -9,11 +9,6 @@
     <result column="a_semester" jdbcType="INTEGER" property="aSemester" />
     <result column="a_score" jdbcType="INTEGER" property="aScore" />
     <result column="a_remark" jdbcType="VARCHAR" property="aRemark" />
-    <association property="tc" javaType="TC">
-    	<id column="tc_id" jdbcType="BIGINT" property="tcId" />
-	    <result column="t_id" jdbcType="BIGINT" property="sId" />
-	    <result column="c_id" jdbcType="BIGINT" property="cId" />
-    </association>
     <association property="student" javaType="Student">
     	<id column="s_id" jdbcType="BIGINT" property="sId" />
 	    <result column="s_no" jdbcType="VARCHAR" property="sNo" />
@@ -52,24 +47,24 @@
 	    <result column="t_fettle" jdbcType="INTEGER" property="tFettle" />
 	    <result column="t_remark" jdbcType="VARCHAR" property="tRemark" />
     </association>
+    
     <association property="course" javaType="Course">
     	 <id column="c_id" jdbcType="BIGINT" property="cId" />
+	    <result column="t_id" jdbcType="BIGINT" property="tId" />
 	    <result column="c_no" jdbcType="VARCHAR" property="cNo" />
 	    <result column="c_name" jdbcType="VARCHAR" property="cName" />
 	    <result column="c_fettle" jdbcType="INTEGER" property="cFettle" />
 	    <result column="c_remark" jdbcType="VARCHAR" property="cRemark" />
     </association>
+    
     <association property="fclass" javaType="Fclass">
     	<id column="c_id" jdbcType="BIGINT" property="cId" />
 	    <result column="classname" jdbcType="VARCHAR" property="classname" />
 	    <result column="c_number" jdbcType="INTEGER" property="cNumber" />
     </association>
+    
   </resultMap>
-  
-  
-  
-  
-  
+ 
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -134,27 +129,23 @@
   
     <select id="GetAll" resultMap="BaseResultMap">
   		select a.a_id, a.s_id, a.c_id, a.a_years, a.a_semester, a.a_score, a.a_remark,
-  		s.s_no,s_name,
   		f.classname,c.c_no,c.c_name,t.t_name
   		from achievement as a
   		left join student as s on a.s_id = s.s_id
   		left join fclass as f on s.c_id = f.c_id
-  		left join tc as tcs on a.c_id = tcs.c_id
-  		left join course as c on c.c_id = tcs.c_id
-  		left join teacher as t on t.t_id = tcs.t_id
+  		left join course as c on c.c_id = a.c_id
+  		left join teacher as t on t.t_id = c.t_id
   	</select>
   	
   	<select id="GetSome" resultMap="BaseResultMap">
 	  	select a.a_id, a.s_id, a.c_id, a.a_years, a.a_semester, a.a_score, a.a_remark,
-  		s.s_no,s_name,
   		f.classname,c.c_no,c.c_name,t.t_name
   		from achievement as a
   		left join student as s on a.s_id = s.s_id
   		left join fclass as f on s.c_id = f.c_id
-  		left join tc as tcs on a.c_id = tcs.c_id
-  		left join course as c on c.c_id = tcs.c_id
-  		left join teacher as t on t.t_id = tcs.t_id
-	  	where s.s_name like #{data}
+  		left join course as c on c.c_id = a.c_id
+  		left join teacher as t on t.t_id = c.t_id
+	  	where c.c_name like #{data}
   	</select>
   
   <select id="selectByExample" parameterType="com.example.demo.pojo.AchievementExample" resultMap="BaseResultMap">
@@ -326,8 +317,5 @@
       a_remark = #{aRemark,jdbcType=VARCHAR}
     where a_id = #{aId,jdbcType=BIGINT}
   </update>
-  
-
-  
   
 </mapper>

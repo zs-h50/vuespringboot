@@ -164,6 +164,66 @@ public class CourseExample {
             return (Criteria) this;
         }
 
+        public Criteria andTIdIsNull() {
+            addCriterion("t_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTIdIsNotNull() {
+            addCriterion("t_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTIdEqualTo(Long value) {
+            addCriterion("t_id =", value, "tId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTIdNotEqualTo(Long value) {
+            addCriterion("t_id <>", value, "tId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTIdGreaterThan(Long value) {
+            addCriterion("t_id >", value, "tId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("t_id >=", value, "tId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTIdLessThan(Long value) {
+            addCriterion("t_id <", value, "tId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTIdLessThanOrEqualTo(Long value) {
+            addCriterion("t_id <=", value, "tId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTIdIn(List<Long> values) {
+            addCriterion("t_id in", values, "tId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTIdNotIn(List<Long> values) {
+            addCriterion("t_id not in", values, "tId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTIdBetween(Long value1, Long value2) {
+            addCriterion("t_id between", value1, value2, "tId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTIdNotBetween(Long value1, Long value2) {
+            addCriterion("t_id not between", value1, value2, "tId");
+            return (Criteria) this;
+        }
+
         public Criteria andCNoIsNull() {
             addCriterion("c_no is null");
             return (Criteria) this;

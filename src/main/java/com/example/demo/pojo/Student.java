@@ -44,16 +44,17 @@ public class Student {
     private String situation; 	//家庭状况
     
     private Fclass fclass;
+    
+    private HouseHold houseHold;
 
     
     public Student() {}
 
-    
 
 	public Student(Long sId, String sNo, String sName, Integer gender, String sPhone, String email, Date birthday,
 			String idCard, String contact, String contactphone, String address, String postcode, String father,
 			String fatherphone, String mather, String matherphone, Integer fettle, String remark, Long cId,
-			String situation, Fclass fclass) {
+			String situation, Fclass fclass, HouseHold houseHold) {
 		super();
 		this.sId = sId;
 		this.sNo = sNo;
@@ -76,8 +77,8 @@ public class Student {
 		this.cId = cId;
 		this.situation = situation;
 		this.fclass = fclass;
+		this.houseHold = houseHold;
 	}
-
 
 
 	public Long getsId() {
@@ -290,6 +291,16 @@ public class Student {
 	}
 
 
+	public HouseHold getHouseHold() {
+		return houseHold;
+	}
+
+
+	public void setHouseHold(HouseHold houseHold) {
+		this.houseHold = houseHold;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Student [sId=" + sId + ", sNo=" + sNo + ", sName=" + sName + ", gender=" + gender + ", sPhone=" + sPhone
@@ -297,9 +308,12 @@ public class Student {
 				+ ", contactphone=" + contactphone + ", address=" + address + ", postcode=" + postcode + ", father="
 				+ father + ", fatherphone=" + fatherphone + ", mather=" + mather + ", matherphone=" + matherphone
 				+ ", fettle=" + fettle + ", remark=" + remark + ", cId=" + cId + ", situation=" + situation
-				+ ", fclass=" + fclass + "]";
+				+ ", fclass=" + fclass + ", houseHold=" + houseHold + "]";
 	}
+
     
+
+	
     
     
 }

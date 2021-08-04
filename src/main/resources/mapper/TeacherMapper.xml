@@ -100,9 +100,9 @@
     from teacher
     where t_id = #{tId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from teacher
-    where t_id = #{tId,jdbcType=BIGINT}
+    where t_no = #{t_no,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.example.demo.pojo.TeacherExample">
     delete from teacher
@@ -371,5 +371,11 @@
   <select id="getAllList" resultMap="BaseResultMap">
   		select * from teacher
   </select>
+  
+    <select id="getTeacherLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
+  		select * from teacher where t_no = #{tNo}
+  </select>
+  
+  
   
 </mapper>

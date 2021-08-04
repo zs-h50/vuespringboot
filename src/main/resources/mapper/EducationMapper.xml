@@ -12,6 +12,7 @@
     <result column="course_id" jdbcType="INTEGER" property="courseId" />
     <association property="course" javaType="Course">
     	<id column="c_id" jdbcType="BIGINT" property="cId" />
+	    <result column="t_id" jdbcType="BIGINT" property="tId" />
 	    <result column="c_no" jdbcType="VARCHAR" property="cNo" />
 	    <result column="c_name" jdbcType="VARCHAR" property="cName" />
 	    <result column="c_fettle" jdbcType="INTEGER" property="cFettle" />

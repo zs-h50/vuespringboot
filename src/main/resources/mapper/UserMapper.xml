@@ -20,8 +20,8 @@
 		insert into user set account =#{account},password = #{password},identity =#{identity}
 	</insert>
 	
-	<delete id="DelUserById" parameterType="java.lang.Long">
-		delete from user where id = #{id}
+	<delete id="DelUserById" parameterType="java.lang.String">
+		delete from user where account = #{account}
 	</delete>
 	
 	<update id="UpdateByUser" parameterType="User">
