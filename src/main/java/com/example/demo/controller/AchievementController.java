@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,6 +58,39 @@ public class AchievementController {
 		return Result.success(lists);
 	}
 	
+	
+	@GetMapping("/student/exam/select/search")
+	public Result<Achievement> GetStduentSelect(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+			@RequestParam String account,@RequestParam String result){
+		PageHelper.startPage(pageNum,8);
+		System.out.println(result);
+		if (result.equals(" ")) {
+			result = "%";
+		}else {
+			result = "%"+result+"%";
+		}
+		List<Achievement> lists = aService.GetStudentExamSearch(account,result);
+//		Iterator iterator  = lists.iterator();
+//		while(iterator.hasNext()) {
+//			System.out.println(iterator.next());
+//		}
+		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
+		PageInfo<Achievement> pageInfo = new PageInfo(lists);
+		model.addAttribute("pageInfo",pageInfo);
+		return Result.success(lists);
+	}
+	
+	@GetMapping("/student/exam/select/one")
+	public Result<Achievement> GetStduentSelectSearch(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+			@RequestParam String account,@RequestParam String e){
+		PageHelper.startPage(pageNum,8);
+		List<Achievement> lists = aService.GetStudentExamSearchOne(account, e);
+		PageInfo<Achievement> pageInfo = new PageInfo(lists);
+		model.addAttribute("pageInfo",pageInfo);
+		return Result.success(lists);
+	}
+	
+	
 	@PostMapping("/teacher/exam/select")
 	public Result<Achievement> teacherExam(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestBody String account){
@@ -68,4 +102,26 @@ public class AchievementController {
 		return Result.success(lists);
 	}
 	
+	@PostMapping("/student/exam/select")
+	public Result<Achievement> studentExam(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+			@RequestBody String account){
+		System.out.println(account);
+		PageHelper.startPage(pageNum,8);
+		List<Achievement> lists = aService.GetStudentExam(account);
+		PageInfo<Achievement> pageInfo = new PageInfo(lists);
+		model.addAttribute("pageInfo",pageInfo);
+		return Result.success(lists);
+	}
+	
+	@PostMapping("/teacher/exam/add")
+	public Result AddExam(@RequestBody Achievement achievement) {
+		aService.insertSelective(achievement);
+		return Result.success();
+	}
+	
+	@PostMapping("/teacher/exam/update")
+	public Result ExamUpdate(@RequestBody Achievement achievement) {
+		aService.updateByPrimaryKeySelective(achievement);
+		return Result.success();
+	}
 }

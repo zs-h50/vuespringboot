@@ -33,4 +33,12 @@ public interface AchievementMapper {
     List<Achievement> GetSome(String data);
     
     List<Achievement> GetTeacherExam(String account);
+    
+    List<Achievement> GetStudentExam(String account);
+    
+    List<Achievement> GetStudentExamSearch(String account,String result);
+    
+    
+    List<Achievement> GetStudentExamSearchOne(String account,String aSemester);
+    
 }

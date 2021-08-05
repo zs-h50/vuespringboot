@@ -147,6 +147,10 @@
     </if>
   </select>
   
+  <select id="getStduents" parameterType="java.lang.String">
+  		select s_no from student where s_no=#{sNo}
+  </select>
+  
   
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
@@ -572,5 +576,12 @@
     left join fclass as f on s.c_id = f.c_id
   </select>
   
+  
+  <select id="getStudent" resultMap="BaseResultMap">
+  	select s_id, s_no, s_name, gender, s_phone, email, birthday, id_card, contact, contactphone, address, postcode, father, fatherphone, mather, matherphone, fettle, remark,s.c_id,classname 
+    from student as s 
+    left join fclass as f on s.c_id = f.c_id
+    where s_no = #{sNo}
+  </select>
   
 </mapper>

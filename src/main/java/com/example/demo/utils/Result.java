@@ -53,6 +53,13 @@ public class Result<T> {
 		return result;
 	}
 	
+	public static Result error() {
+		Result result = new Result<>();
+		result.setCode("100");
+		result.setMsg("失败");
+		return result;
+	}
+	
 	public static <T> Result success(T data) {
 		Result result = new Result<>(data);
 		result.setCode("0");

@@ -40,4 +40,8 @@ public interface StudentMapper {
      */
     List<Student> getAll();
     
+    List<Student> getStudent(String account);
+    
+    int getStduents(String id);
+    
 }

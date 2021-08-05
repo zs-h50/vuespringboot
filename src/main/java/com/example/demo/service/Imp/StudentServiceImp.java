@@ -45,6 +45,18 @@ public class StudentServiceImp implements StudentService{
 		// TODO Auto-generated method stub
 		return studentMapper.updateByPrimaryKeySelective(record);
 	}
+
+	@Override
+	public List<Student> getStudent(String account) {
+		// TODO Auto-generated method stub
+		return studentMapper.getStudent(account);
+	}
+
+	@Override
+	public int getStduents(String id) {
+		// TODO Auto-generated method stub
+		return studentMapper.getStduents(id);
+	}
 	
 	
 	

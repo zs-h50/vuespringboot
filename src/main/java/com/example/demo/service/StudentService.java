@@ -31,4 +31,8 @@ public interface StudentService {
 	 * @return
 	 */
 	int updateByPrimaryKeySelective(Student record);
+	
+	List<Student> getStudent(String account);
+	
+	int getStduents(String id);
 }

@@ -39,6 +39,44 @@ public class EducationServiceImp implements EducationService{
 		// TODO Auto-generated method stub
 		return educationMapper.updateByPrimaryKeySelective(record);
 	}
+
+	@Override
+	public List<Education> getTeacherCourse(String account) {
+		// TODO Auto-generated method stub
+		return educationMapper.getTeacherCourse(account);
+	}
+
+	@Override
+	public List<Education> geteSemester(String eSemester,String account) {
+		// TODO Auto-generated method stub
+		return educationMapper.geteSemester(eSemester,account);
+	}
+
+	@Override
+	public List<Education> geteSemestertwo(String eFettle, String account) {
+		// TODO Auto-generated method stub
+		return educationMapper.geteSemestertwo(eFettle, account);
+	}
+
+	@Override
+	public List<Education> getStudentCourse(String account) {
+		// TODO Auto-generated method stub
+		return educationMapper.getStudentCourse(account);
+	}
+
+	@Override
+	public List<Education> getStudenteSemester(String eSemester, String account) {
+		// TODO Auto-generated method stub
+		return educationMapper.getStudenteSemester(eSemester, account);
+	}
+
+	@Override
+	public List<Education> getStudenteSemestertwo(String eFettle, String account) {
+		// TODO Auto-generated method stub
+		return educationMapper.getStudenteSemestertwo(eFettle, account);
+	}
+	
+	
 	
 	
 

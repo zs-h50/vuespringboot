@@ -29,4 +29,15 @@ public interface EducationMapper {
     int updateByPrimaryKey(Education record);
     
     List<Education> getAll();
+    
+    List<Education> getTeacherCourse(String account);
+    
+    List<Education> getStudentCourse(String account);
+    
+    
+    List<Education> geteSemester(String eSemester,String account);
+    List<Education> geteSemestertwo(String eFettle,String account);
+    
+    List<Education> getStudenteSemester(String eSemester,String account);
+    List<Education> getStudenteSemestertwo(String eFettle,String account);
 }

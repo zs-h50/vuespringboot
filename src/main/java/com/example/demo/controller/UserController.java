@@ -142,11 +142,17 @@ public class UserController {
 		}
 	}
 	
-	@PostMapping("/teacher/updats")
-	public Result UserUpdate(@RequestBody String account, @RequestBody String password) {
+	@GetMapping("/teacher/updats")
+	public Result UserUpdate(@RequestParam String account, @RequestParam String password) {
 		System.out.println("1111111111111111111111111");
 		System.out.println(account);
 		System.out.println(password);
+		userService.UpdateUser(account,password);
+		return Result.success();
+	}
+	
+	@GetMapping("/student/updats")
+	public Result UpStduent(@RequestParam String account, @RequestParam String password) {
 		userService.UpdateUser(account,password);
 		return Result.success();
 	}

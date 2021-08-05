@@ -34,6 +34,38 @@ public class AchievementServiceImp implements AchievementService {
 		// TODO Auto-generated method stub
 		return aMapper.GetTeacherExam(account);
 	}
+
+	@Override
+	public int insertSelective(Achievement record) {
+		// TODO Auto-generated method stub
+		return aMapper.insertSelective(record);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(Achievement record) {
+		// TODO Auto-generated method stub
+		return aMapper.updateByPrimaryKeySelective(record);
+	}
+
+	@Override
+	public List<Achievement> GetStudentExam(String account) {
+		// TODO Auto-generated method stub
+		return aMapper.GetStudentExam(account);
+	}
+
+	@Override
+	public List<Achievement> GetStudentExamSearch(String account, String result) {
+		// TODO Auto-generated method stub
+		return aMapper.GetStudentExamSearch(account, result);
+	}
+
+	@Override
+	public List<Achievement> GetStudentExamSearchOne(String account, String aSemester) {
+		// TODO Auto-generated method stub
+		return aMapper.GetStudentExamSearchOne(account, aSemester);
+	}
+	
+	
 	
 	
 	

@@ -300,7 +300,85 @@
   		on t.t_id = e.t_id
   </select>
   
+  <select id="getTeacherCourse" resultMap="BaseResultMap">
+  	  	select e.e_id, e.c_id, e.t_id, e.e_year, e.e_semester, e.e_fettle, e.e_remark, e.course_id,c.c_id,
+  		c.c_no,c.c_name,f.c_id,f.classname,f.c_number,t.t_id,t.t_name 
+  		from education as e 
+  		left join course as c 
+  		on c.c_id = course_id
+  		left join fclass as f
+  		on e.c_id = f.c_id
+  		left join teacher as t
+  		on t.t_id = e.t_id
+  		where t.t_no = #{tNo}
+  </select>
   
+    <select id="getStudentCourse" resultMap="BaseResultMap">
+  	  	select e.e_id, e.c_id, e.t_id, e.e_year, e.e_semester, e.e_fettle, e.e_remark, e.course_id,c.c_id,
+  		c.c_no,c.c_name,f.c_id,f.classname,f.c_number,s.s_no,t.t_id,t.t_name 
+  		from education as e 
+  		left join course as c 
+  		on c.c_id = course_id
+  		left join fclass as f
+  		on e.c_id = f.c_id
+  		left join teacher as t
+  		on t.t_id = e.t_id
+  		left join student as s on s.c_id = f.c_id
+  		where s.s_no = #{sNo}
+  </select>
   
+  <select id="geteSemester" resultMap="BaseResultMap">
+  		select e.e_id, e.c_id, e.t_id, e.e_year, e.e_semester, e.e_fettle, e.e_remark, e.course_id,c.c_id,
+  		c.c_no,c.c_name,f.c_id,f.classname,f.c_number,t.t_id,t.t_name 
+  		from education as e 
+  		left join course as c 
+  		on c.c_id = course_id
+  		left join fclass as f
+  		on e.c_id = f.c_id
+  		left join teacher as t
+  		on t.t_id = e.t_id
+  		where e.e_semester =#{eSemester} and t.t_no = #{account}
+  </select>
+  
+    <select id="geteSemestertwo" resultMap="BaseResultMap">
+  		select e.e_id, e.c_id, e.t_id, e.e_year, e.e_semester, e.e_fettle, e.e_remark, e.course_id,c.c_id,
+  		c.c_no,c.c_name,f.c_id,f.classname,f.c_number,t.t_id,t.t_name 
+  		from education as e 
+  		left join course as c 
+  		on c.c_id = course_id
+  		left join fclass as f
+  		on e.c_id = f.c_id
+  		left join teacher as t
+  		on t.t_id = e.t_id
+  		where e.e_fettle =#{eFettle} and t.t_no = #{account}
+  </select>
+  
+    <select id="getStudenteSemester" resultMap="BaseResultMap">
+  		select e.e_id, e.c_id, e.t_id, e.e_year, e.e_semester, e.e_fettle, e.e_remark, e.course_id,c.c_id,
+  		c.c_no,c.c_name,f.c_id,f.classname,f.c_number,t.t_id,t.t_name
+  		from education as e 
+  		left join course as c 
+  		on c.c_id = course_id
+  		left join fclass as f
+  		on e.c_id = f.c_id
+  		left join teacher as t
+  		on t.t_id = e.t_id
+  		left join student as s on f.c_id = s.c_id 
+  		where e.e_semester =#{eSemester} and s.s_no = #{account}
+  </select>
+  
+    <select id="getStudenteSemestertwo" resultMap="BaseResultMap">
+  		select e.e_id, e.c_id, e.t_id, e.e_year, e.e_semester, e.e_fettle, e.e_remark, e.course_id,c.c_id,
+  		c.c_no,c.c_name,f.c_id,f.classname,f.c_number,t.t_id,t.t_name 
+  		from education as e 
+  		left join course as c 
+  		on c.c_id = course_id
+  		left join fclass as f
+  		on e.c_id = f.c_id
+  		left join teacher as t
+  		on t.t_id = e.t_id
+  		left join student as s on f.c_id = s.c_id 
+  		where e.e_fettle =#{eFettle} and s.s_no = #{account}
+  </select>
   
 </mapper>

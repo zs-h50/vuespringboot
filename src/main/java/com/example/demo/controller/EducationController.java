@@ -2,9 +2,12 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.pojo.Education;
+import com.example.demo.pojo.Student;
 import com.example.demo.service.EducationService;
 import com.example.demo.utils.Result;
 import com.github.pagehelper.PageHelper;
@@ -72,5 +76,93 @@ public class EducationController {
 		return Result.success();
 	}
 	
+	@PostMapping("/teacher/course/select")
+	public Result TeacherCourse(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+			@RequestBody String account) {
+		PageHelper.startPage(pageNum,8);
+		List<Education> lists = educationService.getTeacherCourse(account);
+		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
+		PageInfo<Education> pageInfo = new PageInfo(lists);
+		model.addAttribute("pageInfo",pageInfo);
+//		System.out.println("查询成功！！");
+		return Result.success(lists);
+	}
+	/**
+	 * 老师课程搜索框1
+	 * @param model
+	 * @param pageNum
+	 * @param e
+	 * @param account
+	 * @return
+	 */
+	@GetMapping("/teacher/course/select/one")
+	public Result TeacherCourseSearch(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+			@RequestParam String e,@RequestParam String account) {
+		int eSemester = Integer.valueOf(e);
+		System.out.println(eSemester);
+		System.out.println(account);
+		List<Education> lists = educationService.geteSemester(e, account);
+		PageHelper.startPage(pageNum,8);
+		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
+		PageInfo<Education> pageInfo = new PageInfo(lists);
+		model.addAttribute("pageInfo",pageInfo);
+		return Result.success(lists);
+	}
+	/**
+	 * 老师课程搜索框2
+	 * @param model
+	 * @param pageNum
+	 * @param e
+	 * @param account
+	 * @return
+	 */
+	@GetMapping("/teacher/course/select/two")
+	public Result TeacherCourseSearchtwo(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+			@RequestParam String e,@RequestParam String account) {
+		int eSemester = Integer.valueOf(e);
+		System.out.println(eSemester);
+		System.out.println(account);
+		List<Education> lists = educationService.geteSemestertwo(e, account);
+		PageHelper.startPage(pageNum,8);
+		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
+		PageInfo<Education> pageInfo = new PageInfo(lists);
+		model.addAttribute("pageInfo",pageInfo);
+		return Result.success(lists);
+	}
 	
+	@GetMapping("/student/course/select/one")
+	public Result StudentCourseSearch(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+			@RequestParam String e,@RequestParam String account) {
+		PageHelper.startPage(pageNum,8);
+		List<Education> lists = educationService.getStudenteSemester(e, account);
+		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
+		PageInfo<Education> pageInfo = new PageInfo(lists);
+		model.addAttribute("pageInfo",pageInfo);
+		return Result.success(lists);
+	}
+	
+	@GetMapping("/student/course/select/two")
+	public Result StudentCourseSearchtwo(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+			@RequestParam String e,@RequestParam String account) {
+		PageHelper.startPage(pageNum,8);
+		List<Education> lists = educationService.getStudenteSemestertwo(e, account);
+		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
+		PageInfo<Education> pageInfo = new PageInfo(lists);
+		model.addAttribute("pageInfo",pageInfo);
+		return Result.success(lists);
+	}
+	
+	
+	
+	
+	@PostMapping("/student/course/select")
+	public Result StudentCourse(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+			@RequestBody String account) {
+		PageHelper.startPage(pageNum,8);
+		List<Education> lists = educationService.getStudentCourse(account);
+		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
+		PageInfo<Education> pageInfo = new PageInfo(lists);
+		model.addAttribute("pageInfo",pageInfo);
+		return Result.success(lists);
+	}
 }
