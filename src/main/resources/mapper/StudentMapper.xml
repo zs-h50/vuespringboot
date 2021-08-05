@@ -578,10 +578,10 @@
   
   
   <select id="getStudent" resultMap="BaseResultMap">
-  	select s_id, s_no, s_name, gender, s_phone, email, birthday, id_card, contact, contactphone, address, postcode, father, fatherphone, mather, matherphone, fettle, remark,s.c_id,classname 
+  	select s_id, s_no, s_name, gender, s_phone, email, birthday,id_card, contact, contactphone, address,postcode,father, fatherphone, mather, matherphone, fettle, remark,s.c_id,classname
     from student as s 
     left join fclass as f on s.c_id = f.c_id
-    where s_no = #{sNo}
+    where s_no = #{sNo} and 
   </select>
   
 </mapper>

@@ -34,4 +34,7 @@ public interface TeacherService {
 	int deleteByPrimaryKey(String tNo);
 	
 	List<Teacher> getTeacherLogin(String account);
+	
+	
+	int GetOneTeacher(String tNo);
 }

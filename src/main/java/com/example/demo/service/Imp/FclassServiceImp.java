@@ -46,6 +46,12 @@ public class FclassServiceImp implements FclassService {
 		return fclassMapper.updateByPrimaryKeySelective(record);
 	}
 
+	@Override
+	public int GetOneFclass(String classname) {
+		// TODO Auto-generated method stub
+		return fclassMapper.GetOneFclass(classname);
+	}
+
 	
 	
 }

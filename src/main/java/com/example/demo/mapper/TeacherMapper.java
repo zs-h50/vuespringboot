@@ -31,4 +31,7 @@ public interface TeacherMapper {
     List<Teacher> getAllList();
     
     List<Teacher> getTeacherLogin(String account);
+    
+    int GetOneTeacher(String tNo);
+    
 }

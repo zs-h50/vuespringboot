@@ -58,6 +58,12 @@ public class TeacherServiceImp implements TeacherService{
 		return teacherMapper.getTeacherLogin(account);
 	}
 
+	@Override
+	public int GetOneTeacher(String tNo) {
+		// TODO Auto-generated method stub
+		return teacherMapper.GetOneTeacher(tNo);
+	}
+
 
 	
 	

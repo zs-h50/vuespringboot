@@ -196,4 +196,9 @@
   <select id="getOne" resultMap="BaseResultMap">
   		select * from fclass where classname like #{classname}
   </select>
+  
+  <select id="GetOneFclass" parameterType="java.lang.String">
+  		select classname from  classname =#{classname}
+  </select>
+  
 </mapper>

@@ -41,7 +41,7 @@ public class StudentController {
 	public Result AddStudent(@RequestBody Student student) {
 		System.out.println("正在插入数据到数据库！！！！！");
 		int stduents = studentService.getStduents(student.getsNo());
-		if (studentService!=null) {
+		if (stduents != 0) {
 			return Result.error();
 		} else {
 			User user = new User();

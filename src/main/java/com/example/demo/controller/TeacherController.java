@@ -52,18 +52,25 @@ public class TeacherController {
 	@PostMapping("/admin/teacher/add")
 	public Result AddTeacher(@RequestBody Teacher teacher) {
 		System.out.println("正在插入数据到数据库！！！！！");
-		User user = new User();
-		user.setAccount(teacher.gettNo());
-		user.setPassword("123456");
-		user.setIdentity("2");
-		userService.AddUser(user);
-		int temp = teacherService.insertSelective(teacher);
-		if (temp != 0) {
-			System.out.println("插入成功！");
-		}else {
-			System.out.println("插入失败！");
+		int getOneTeacher = teacherService.GetOneTeacher(teacher.gettNo());
+		System.out.println(getOneTeacher);
+		if (getOneTeacher != 0) {
+			System.out.println("教师用户已存在");
+			return Result.error();
+		} else {
+			User user = new User();
+			user.setAccount(teacher.gettNo());
+			user.setPassword("123456");
+			user.setIdentity("2");
+			userService.AddUser(user);
+			int temp = teacherService.insertSelective(teacher);
+			if (temp != 0) {
+				System.out.println("插入成功！");
+			}else {
+				System.out.println("插入失败！");
+			}
+			return Result.success();
 		}
-		return Result.success();
 	}
 	
 	

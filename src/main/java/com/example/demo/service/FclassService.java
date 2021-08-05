@@ -34,4 +34,6 @@ public interface FclassService {
 	 * @return
 	 */
 	int updateByPrimaryKeySelective(Fclass record);
+	
+	int GetOneFclass(String classname);
 }

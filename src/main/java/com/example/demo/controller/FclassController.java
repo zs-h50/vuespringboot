@@ -70,8 +70,15 @@ public class FclassController {
 
 	@PostMapping("/admin/fclass/add")
 	public Result getAdd(@RequestBody Fclass fclass) {
-		fclassService.insertSelective(fclass);
-		return Result.success();
+		int getOneFclass = fclassService.GetOneFclass(fclass.getClassname());
+		if (getOneFclass != 0) {
+			System.out.println("班级已存在");
+			return Result.error();
+		}else {
+			fclassService.insertSelective(fclass);
+			return Result.success();
+		}
+
 	}
 	
 	/**

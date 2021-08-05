@@ -318,7 +318,7 @@
   		c.c_no,c.c_name,f.c_id,f.classname,f.c_number,s.s_no,t.t_id,t.t_name 
   		from education as e 
   		left join course as c 
-  		on c.c_id = course_id
+  		on c.c_id = e.course_id
   		left join fclass as f
   		on e.c_id = f.c_id
   		left join teacher as t
