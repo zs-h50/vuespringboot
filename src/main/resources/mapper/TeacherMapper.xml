@@ -101,7 +101,12 @@
     where t_id = #{tId,jdbcType=BIGINT}
   </select>
   
-  <select id="GetOneTeacher" parameterType="java.lang.String">
+  
+  <select id="getMax" resultType="string">
+  	select max(t_no) from teacher
+  </select>
+  
+  <select id="GetOneTeacher" parameterType="java.lang.String" resultMap="BaseResultMap">
   		select t_no from teacher where t_no =#{tNo}
   </select>
   

@@ -53,11 +53,18 @@ public class StudentServiceImp implements StudentService{
 	}
 
 	@Override
-	public int getStduents(String id) {
+	public List<Student> getStduents(String sNo) {
 		// TODO Auto-generated method stub
-		return studentMapper.getStduents(id);
+		return studentMapper.getStduents(sNo);
 	}
-	
+
+	@Override
+	public String getSno() {
+		// TODO Auto-generated method stub
+		return studentMapper.getSno();
+	}
+
+
 	
 	
 }

@@ -52,14 +52,17 @@ public class TeacherController {
 	@PostMapping("/admin/teacher/add")
 	public Result AddTeacher(@RequestBody Teacher teacher) {
 		System.out.println("正在插入数据到数据库！！！！！");
-		int getOneTeacher = teacherService.GetOneTeacher(teacher.gettNo());
+		List<Teacher> getOneTeacher = teacherService.GetOneTeacher(teacher.gettNo());
 		System.out.println(getOneTeacher);
-		if (getOneTeacher != 0) {
+		if (getOneTeacher.size() != 0) {
 			System.out.println("教师用户已存在");
-			return Result.error();
+			return Result.error("100","教师用户已存在");
 		} else {
+			String tNo = teacherService.getMax();
+			Integer t = Integer.valueOf(tNo)+1;
 			User user = new User();
-			user.setAccount(teacher.gettNo());
+			user.setAccount(String.valueOf(t));
+			teacher.settNo(String.valueOf(t));
 			user.setPassword("123456");
 			user.setIdentity("2");
 			userService.AddUser(user);

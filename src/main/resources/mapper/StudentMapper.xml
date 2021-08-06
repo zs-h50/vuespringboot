@@ -147,10 +147,13 @@
     </if>
   </select>
   
-  <select id="getStduents" parameterType="java.lang.String">
-  		select s_no from student where s_no=#{sNo}
+  <select id="getStduents" parameterType="java.lang.String" resultMap="BaseResultMap">
+  		select * from student where s_no=#{sNo}
   </select>
   
+  <select id="getSno" resultType="string">
+  	select max(s_no) from student
+  </select>
   
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
@@ -581,7 +584,7 @@
   	select s_id, s_no, s_name, gender, s_phone, email, birthday,id_card, contact, contactphone, address,postcode,father, fatherphone, mather, matherphone, fettle, remark,s.c_id,classname
     from student as s 
     left join fclass as f on s.c_id = f.c_id
-    where s_no = #{sNo} and 
+    where s_no = #{sNo} 
   </select>
   
 </mapper>

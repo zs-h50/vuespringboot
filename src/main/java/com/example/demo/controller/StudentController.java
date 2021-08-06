@@ -20,6 +20,8 @@ import com.example.demo.pojo.User;
 import com.example.demo.service.StudentService;
 import com.example.demo.service.UserService;
 import com.example.demo.utils.Result;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageException;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -40,17 +42,19 @@ public class StudentController {
 	@PostMapping("/admin/studentinfo/add")
 	public Result AddStudent(@RequestBody Student student) {
 		System.out.println("正在插入数据到数据库！！！！！");
-		int stduents = studentService.getStduents(student.getsNo());
-		if (stduents != 0) {
-			return Result.error();
+		if (studentService.getStduents(student.getsNo()).size() != 0) {
+			return Result.error("-1","已存在学生用户");
 		} else {
+			String sno = studentService.getSno();
+			Integer a = Integer.valueOf(sno)+1;
 			User user = new User();
-			user.setAccount(student.getsNo());
+			user.setAccount(String.valueOf(a));
+			student.setsNo(String.valueOf(a));
+			System.out.println("11111111111111111-----"+student.getsNo());
 			user.setPassword("123456");
 			user.setIdentity("1");
 			userService.AddUser(user);
 			int temp = studentService.insertSelective(student);
-
 			System.out.println("插入成功！");
 			return Result.success();
 		}
@@ -66,8 +70,8 @@ public class StudentController {
 	public Result<Student> GetAll(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum) {
 		System.out.println("查询数据中..........");
 		//pageNum 当前页码
-		PageHelper.startPage(pageNum,8);
 		List<Student> lists = studentService.getAll();
+		PageHelper.startPage(pageNum,lists.size());
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Student> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);
@@ -97,8 +101,8 @@ public class StudentController {
 	@PostMapping("/student/select")
 	public Result getStudent(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestBody String account) {
-		PageHelper.startPage(pageNum,8);
 		List<Student> lists = studentService.getStudent(account);
+		PageHelper.startPage(pageNum,lists.size());
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Student> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);

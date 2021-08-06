@@ -36,5 +36,7 @@ public interface TeacherService {
 	List<Teacher> getTeacherLogin(String account);
 	
 	
-	int GetOneTeacher(String tNo);
+	List<Teacher> GetOneTeacher(String tNo);
+	
+	String getMax();
 }

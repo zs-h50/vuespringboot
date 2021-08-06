@@ -34,5 +34,7 @@ public interface StudentService {
 	
 	List<Student> getStudent(String account);
 	
-	int getStduents(String id);
+	List<Student> getStduents(String sNo);
+	
+	String getSno();
 }

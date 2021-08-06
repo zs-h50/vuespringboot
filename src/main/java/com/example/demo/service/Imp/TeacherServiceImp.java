@@ -59,9 +59,18 @@ public class TeacherServiceImp implements TeacherService{
 	}
 
 	@Override
-	public int GetOneTeacher(String tNo) {
+	public List<Teacher> GetOneTeacher(String tNo) {
 		// TODO Auto-generated method stub
 		return teacherMapper.GetOneTeacher(tNo);
+	}
+
+	/**
+	 * 寻找最大的编号
+	 */
+	@Override
+	public String getMax() {
+		// TODO Auto-generated method stub
+		return teacherMapper.getMax();
 	}
 
 
