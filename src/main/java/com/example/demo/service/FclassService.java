@@ -35,5 +35,5 @@ public interface FclassService {
 	 */
 	int updateByPrimaryKeySelective(Fclass record);
 	
-	int GetOneFclass(String classname);
+	List<Fclass> GetOneFclass(String classname);
 }

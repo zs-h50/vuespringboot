@@ -47,7 +47,7 @@ public class FclassServiceImp implements FclassService {
 	}
 
 	@Override
-	public int GetOneFclass(String classname) {
+	public List<Fclass> GetOneFclass(String classname) {
 		// TODO Auto-generated method stub
 		return fclassMapper.GetOneFclass(classname);
 	}

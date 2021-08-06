@@ -32,5 +32,5 @@ public interface FclassMapper {
     
     List<Fclass> getOne(String classname);
     
-    int GetOneFclass(String classname);
+    List<Fclass> GetOneFclass(String classname);
 }

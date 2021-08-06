@@ -41,16 +41,26 @@ public class EducationController {
 		return Result.success(lists);
 	}
 	
+	
+	
+	
 	@PostMapping("/admin/course/add")
 	public Result AddEducation(@RequestBody Education education) {
 		System.out.println("正在插入数据到数据库！！！！！");
-		int temp = educationService.insertSelective(education);
-		if (temp != 0) {
-			System.out.println("插入成功！");
-		}else {
-			System.out.println("插入失败！");
+		
+		if (educationService.getOneCourse(education.gettId(), education.getcId(),education.geteFettle()) != 0) {
+			System.out.println("老师已授这门课，请重新选择");
+			return Result.error();
+		} else {
+			int temp = educationService.insertSelective(education);
+			if (temp != 0) {
+				System.out.println("插入成功！");
+			}else {
+				System.out.println("插入失败！");
+			}
+			return Result.success();
 		}
-		return Result.success();
+
 	}
 	
 	

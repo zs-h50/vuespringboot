@@ -70,8 +70,9 @@ public class FclassController {
 
 	@PostMapping("/admin/fclass/add")
 	public Result getAdd(@RequestBody Fclass fclass) {
-		int getOneFclass = fclassService.GetOneFclass(fclass.getClassname());
-		if (getOneFclass != 0) {
+		String classname = fclass.getClassname();
+		 List<Fclass> list = fclassService.GetOneFclass(classname);
+		if (list.size() != 0) {
 			System.out.println("班级已存在");
 			return Result.error();
 		}else {

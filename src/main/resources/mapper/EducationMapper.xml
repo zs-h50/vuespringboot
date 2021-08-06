@@ -287,6 +287,18 @@
     where e_id = #{eId,jdbcType=BIGINT}
   </update>
   
+  <select id="getOneCourse" parameterType="java.lang.Long">
+  	  	select e.e_id, e.c_id, e.t_id, e.e_year, e.e_semester, e.e_fettle, e.e_remark, e.course_id,c.c_id,
+  		c.c_no,c.c_name,f.c_id,f.classname,f.c_number,t.t_id,t.t_name 
+  		from education as e 
+  		left join course as c 
+  		on c.c_id = course_id
+  		left join fclass as f
+  		on e.c_id = f.c_id
+  		left join teacher as t
+  		on t.t_id = e.t_id
+  		where t.t_id =#{tId} and c.c_id=#{cId} and e.e_fettle=#{eFettle}
+  </select>
   
   <select id="getAll" resultMap="BaseResultMap">
   		select e.e_id, e.c_id, e.t_id, e.e_year, e.e_semester, e.e_fettle, e.e_remark, e.course_id,c.c_id,

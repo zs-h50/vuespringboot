@@ -75,6 +75,12 @@ public class EducationServiceImp implements EducationService{
 		// TODO Auto-generated method stub
 		return educationMapper.getStudenteSemestertwo(eFettle, account);
 	}
+
+	@Override
+	public int getOneCourse(Long tId, Long cId,Integer eFettle) {
+		// TODO Auto-generated method stub
+		return educationMapper.getOneCourse(tId, cId,eFettle);
+	}
 	
 	
 	

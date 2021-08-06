@@ -10,7 +10,7 @@ public interface CourseMapper {
 
     int deleteByExample(CourseExample example);
 
-    int deleteByPrimaryKey(Long cId);
+    int deleteByPrimaryKey(String cNo);
 
     int insert(Course record);
 
@@ -27,4 +27,8 @@ public interface CourseMapper {
     int updateByPrimaryKeySelective(Course record);
 
     int updateByPrimaryKey(Course record);
+    
+    List<Course> getOnCourse(String cNo,String cName);
+    
+    List<Course> getAllCourse();
 }

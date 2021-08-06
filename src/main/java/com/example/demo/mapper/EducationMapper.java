@@ -40,4 +40,7 @@ public interface EducationMapper {
     
     List<Education> getStudenteSemester(String eSemester,String account);
     List<Education> getStudenteSemestertwo(String eFettle,String account);
+    
+    int getOneCourse(Long tId,Long cId,Integer eFettle);
+    
 }
