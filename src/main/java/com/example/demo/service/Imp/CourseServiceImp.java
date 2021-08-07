@@ -10,15 +10,15 @@ import com.example.demo.pojo.Course;
 import com.example.demo.service.CourseService;
 
 @Service
-public class CourseServiceImp implements CourseService{
+public class CourseServiceImp implements CourseService {
 
 	@Autowired
 	private CourseMapper cMapper;
-	
+
 	@Override
-	public List<Course> getOnCourse(String cNo,String cName) {
+	public List<Course> getOnCourse(String cNo, String cName) {
 		// TODO Auto-generated method stub
-		return cMapper.getOnCourse(cNo,cName);
+		return cMapper.getOnCourse(cNo, cName);
 	}
 
 	@Override
@@ -38,6 +38,17 @@ public class CourseServiceImp implements CourseService{
 		// TODO Auto-generated method stub
 		return cMapper.updateByPrimaryKeySelective(record);
 	}
-	
-	
+
+	@Override
+	public String getCno() {
+		// TODO Auto-generated method stub
+		return cMapper.getCno();
+	}
+
+	@Override
+	public int DeleteCourse(Long cId) {
+		// TODO Auto-generated method stub
+		return cMapper.DeleteCourse(cId);
+	}
+
 }

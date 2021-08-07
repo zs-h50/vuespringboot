@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.pojo.Achievement;
 import com.example.demo.service.AchievementService;
+import com.example.demo.utils.Pages;
 import com.example.demo.utils.Result;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -27,7 +28,7 @@ public class AchievementController {
 	public Result GetExam(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum) {
 		System.out.println("查询数据中..........");
 		//pageNum 当前页码
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		List<Achievement> lists = aService.GetAll();
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Achievement> pageInfo = new PageInfo(lists);
@@ -39,7 +40,7 @@ public class AchievementController {
 	@PostMapping("/admin/exam/select/search")
 	public Result<Achievement> GetSelect(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestBody String data){
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		
 		System.out.println(data);
 		if (data.equals(" ")) {
@@ -62,7 +63,7 @@ public class AchievementController {
 	@GetMapping("/student/exam/select/search")
 	public Result<Achievement> GetStduentSelect(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestParam String account,@RequestParam String result){
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		System.out.println(result);
 		if (result.equals(" ")) {
 			result = "%";
@@ -83,7 +84,7 @@ public class AchievementController {
 	@GetMapping("/student/exam/select/one")
 	public Result<Achievement> GetStduentSelectSearch(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestParam String account,@RequestParam String e){
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		List<Achievement> lists = aService.GetStudentExamSearchOne(account, e);
 		PageInfo<Achievement> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);
@@ -95,7 +96,7 @@ public class AchievementController {
 	public Result<Achievement> teacherExam(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestBody String account){
 		System.out.println(account);
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		List<Achievement> lists = aService.GetTeacherExam(account);
 		PageInfo<Achievement> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);
@@ -106,7 +107,7 @@ public class AchievementController {
 	public Result<Achievement> studentExam(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestBody String account){
 		System.out.println(account);
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		List<Achievement> lists = aService.GetStudentExam(account);
 		PageInfo<Achievement> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);

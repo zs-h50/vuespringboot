@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.pojo.Education;
 import com.example.demo.pojo.Student;
 import com.example.demo.service.EducationService;
+import com.example.demo.utils.Pages;
 import com.example.demo.utils.Result;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -32,8 +33,8 @@ public class EducationController {
 	public Result Getall(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum) {
 		System.out.println("查询数据中..........");
 		//pageNum 当前页码
-		PageHelper.startPage(pageNum,8);
 		List<Education> lists = educationService.getAll();
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Education> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);
@@ -43,14 +44,18 @@ public class EducationController {
 	
 	
 	
-	
+	/**
+	 * 分配课程
+	 * @param education
+	 * @return
+	 */
 	@PostMapping("/admin/course/add")
 	public Result AddEducation(@RequestBody Education education) {
 		System.out.println("正在插入数据到数据库！！！！！");
-		
-		if (educationService.getOneCourse(education.gettId(), education.getcId(),education.geteFettle()) != 0) {
+		List<Education> oneCourse = educationService.getOneCourse(education.getcId(),education.getCourseId());
+		if (oneCourse.size() != 0) {
 			System.out.println("老师已授这门课，请重新选择");
-			return Result.error();
+			return Result.error("100","这班级已有老师授这门课，请重新选择");
 		} else {
 			int temp = educationService.insertSelective(education);
 			if (temp != 0) {
@@ -89,7 +94,7 @@ public class EducationController {
 	@PostMapping("/teacher/course/select")
 	public Result TeacherCourse(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestBody String account) {
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		List<Education> lists = educationService.getTeacherCourse(account);
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Education> pageInfo = new PageInfo(lists);
@@ -112,7 +117,7 @@ public class EducationController {
 		System.out.println(eSemester);
 		System.out.println(account);
 		List<Education> lists = educationService.geteSemester(e, account);
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Education> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);
@@ -133,7 +138,7 @@ public class EducationController {
 		System.out.println(eSemester);
 		System.out.println(account);
 		List<Education> lists = educationService.geteSemestertwo(e, account);
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Education> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);
@@ -143,7 +148,7 @@ public class EducationController {
 	@GetMapping("/student/course/select/one")
 	public Result StudentCourseSearch(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestParam String e,@RequestParam String account) {
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		List<Education> lists = educationService.getStudenteSemester(e, account);
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Education> pageInfo = new PageInfo(lists);
@@ -154,7 +159,7 @@ public class EducationController {
 	@GetMapping("/student/course/select/two")
 	public Result StudentCourseSearchtwo(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestParam String e,@RequestParam String account) {
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		List<Education> lists = educationService.getStudenteSemestertwo(e, account);
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Education> pageInfo = new PageInfo(lists);
@@ -168,7 +173,7 @@ public class EducationController {
 	@PostMapping("/student/course/select")
 	public Result StudentCourse(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestBody String account) {
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		List<Education> lists = educationService.getStudentCourse(account);
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Education> pageInfo = new PageInfo(lists);

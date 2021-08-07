@@ -31,4 +31,9 @@ public interface CourseMapper {
     List<Course> getOnCourse(String cNo,String cName);
     
     List<Course> getAllCourse();
+    
+    String getCno();
+    
+	int DeleteCourse(Long cId);
+    
 }

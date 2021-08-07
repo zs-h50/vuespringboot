@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.pojo.Fclass;
 import com.example.demo.service.FclassService;
+import com.example.demo.utils.Pages;
 import com.example.demo.utils.Result;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -31,7 +32,7 @@ public class FclassController {
 	public Result<Fclass> GetAll(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum){
 		System.out.println("查询数据中..........");
 		//pageNum 当前页码
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		List<Fclass> lists = fclassService.GetAll();
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Fclass> pageInfo = new PageInfo(lists);
@@ -43,7 +44,7 @@ public class FclassController {
 	@RequestMapping("/admin/fclass/select/search")
 	public Result<Fclass> GetSelect(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestBody String classname){
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		
 		System.out.println(classname);
 		if (classname.equals(" ")) {

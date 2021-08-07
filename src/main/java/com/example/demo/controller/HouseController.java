@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.pojo.HouseHold;
 import com.example.demo.service.HouseService;
+import com.example.demo.utils.Pages;
 import com.example.demo.utils.Result;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -30,7 +31,7 @@ public class HouseController {
 	public Result<HouseHold> GetAll(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum){
 		System.out.println("查询数据中..........");
 		//pageNum 当前页码
-		PageHelper.startPage(pageNum,8);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		List<HouseHold> lists = houseService.getAllhouse();
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<HouseHold> pageInfo = new PageInfo(lists);

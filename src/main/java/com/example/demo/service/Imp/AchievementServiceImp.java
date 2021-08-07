@@ -64,6 +64,12 @@ public class AchievementServiceImp implements AchievementService {
 		// TODO Auto-generated method stub
 		return aMapper.GetStudentExamSearchOne(account, aSemester);
 	}
+
+	@Override
+	public int DeleteAchievement(Long cId) {
+		// TODO Auto-generated method stub
+		return aMapper.DeleteAchievement(cId);
+	}
 	
 	
 	

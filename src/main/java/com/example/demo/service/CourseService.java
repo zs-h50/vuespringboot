@@ -6,10 +6,15 @@ import com.example.demo.pojo.Course;
 
 public interface CourseService {
 
-	List<Course> getOnCourse(String cNo,String cName);
+	List<Course> getOnCourse(String cNo, String cName);
+
 	int insertSelective(Course record);
-	
+
 	List<Course> getAllCourse();
-	
+
 	int updateByPrimaryKeySelective(Course record);
+
+	String getCno();
+
+	int DeleteCourse(Long cId);
 }

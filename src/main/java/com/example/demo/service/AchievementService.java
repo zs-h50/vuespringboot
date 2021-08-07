@@ -21,4 +21,6 @@ public interface AchievementService {
 	 List<Achievement> GetStudentExamSearch(String account,String result);
 	 
 	 List<Achievement> GetStudentExamSearchOne(String account,String aSemester);
+	 
+	 int DeleteAchievement(Long cId);
 }

@@ -26,5 +26,9 @@ public interface EducationService {
 	List<Education> getStudenteSemester(String eSemester,String account);
 	List<Education> getStudenteSemestertwo(String eFettle,String account);
 	
-	int getOneCourse(Long tId,Long cId,Integer eFettle);
+	List<Education> getOneCourse(Long cId,Integer courseId);
+	
+	List<Education> getTeacherFclass(Long tId);
+	
+	List<Education> getCourseFclass(Long cId);
 }

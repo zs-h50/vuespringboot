@@ -19,6 +19,7 @@ import com.example.demo.pojo.Student;
 import com.example.demo.pojo.User;
 import com.example.demo.service.StudentService;
 import com.example.demo.service.UserService;
+import com.example.demo.utils.Pages;
 import com.example.demo.utils.Result;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageException;
@@ -50,7 +51,7 @@ public class StudentController {
 			User user = new User();
 			user.setAccount(String.valueOf(a));
 			student.setsNo(String.valueOf(a));
-			System.out.println("11111111111111111-----"+student.getsNo());
+			//System.out.println("11111111111111111-----"+student.getsNo());
 			user.setPassword("123456");
 			user.setIdentity("1");
 			userService.AddUser(user);
@@ -71,7 +72,7 @@ public class StudentController {
 		System.out.println("查询数据中..........");
 		//pageNum 当前页码
 		List<Student> lists = studentService.getAll();
-		PageHelper.startPage(pageNum,lists.size());
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Student> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);
@@ -102,7 +103,7 @@ public class StudentController {
 	public Result getStudent(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
 			@RequestBody String account) {
 		List<Student> lists = studentService.getStudent(account);
-		PageHelper.startPage(pageNum,lists.size());
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Student> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);

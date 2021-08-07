@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.pojo.Education;
 import com.example.demo.pojo.Student;
 import com.example.demo.pojo.Teacher;
 import com.example.demo.pojo.User;
+import com.example.demo.service.EducationService;
 import com.example.demo.service.TeacherService;
 import com.example.demo.service.UserService;
+import com.example.demo.utils.Pages;
 import com.example.demo.utils.Result;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -28,7 +32,13 @@ public class TeacherController {
 	@Autowired
 	private TeacherService teacherService;
 	
-	@Autowired UserService userService;
+	@Autowired 
+	private UserService userService;
+	
+	@Autowired 
+	private EducationService eService;
+	
+	
 	/**
 	 * 查询全部老师的信息
 	 * @param model
@@ -39,8 +49,8 @@ public class TeacherController {
 	public Result<Teacher> getResult(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum) {
 		System.out.println("查询数据中..........");
 		//pageNum 当前页码
-		PageHelper.startPage(pageNum,8);
 		List<Teacher> lists = teacherService.getAllList();
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Teacher> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);
@@ -107,12 +117,19 @@ public class TeacherController {
 		System.out.println("查询数据中..........");
 		//pageNum 当前页码
 		System.out.println(account);
-		PageHelper.startPage(pageNum,8);
 		List<Teacher> lists = teacherService.getTeacherLogin(account);
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
 		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
 		PageInfo<Teacher> pageInfo = new PageInfo(lists);
 		model.addAttribute("pageInfo",pageInfo);
 //		System.out.println("查询成功！！");
+		return Result.success(lists);
+	}
+
+	@PostMapping("/admin/teacher/fclass")
+	public Result<Education> getTeacheResult(Model model,@RequestBody Long tId){
+		List<Education> lists = eService.getTeacherFclass(tId);
+		model.addAttribute("lists",lists);
 		return Result.success(lists);
 	}
 	

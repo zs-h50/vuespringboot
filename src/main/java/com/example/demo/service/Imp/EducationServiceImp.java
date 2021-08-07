@@ -77,14 +77,22 @@ public class EducationServiceImp implements EducationService{
 	}
 
 	@Override
-	public int getOneCourse(Long tId, Long cId,Integer eFettle) {
+	public List<Education> getOneCourse(Long cId,Integer courseId) {
 		// TODO Auto-generated method stub
-		return educationMapper.getOneCourse(tId, cId,eFettle);
+		return educationMapper.getOneCourse(cId,courseId);
+	}
+
+	@Override
+	public List<Education> getTeacherFclass(Long tId) {
+		// TODO Auto-generated method stub
+		return educationMapper.getTeacherFclass(tId);
+	}
+
+	@Override
+	public List<Education> getCourseFclass(Long cId) {
+		// TODO Auto-generated method stub
+		return educationMapper.getCourseFclass(cId);
 	}
 	
-	
-	
-	
-
 	
 }
