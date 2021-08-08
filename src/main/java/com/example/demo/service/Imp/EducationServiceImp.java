@@ -13,6 +13,7 @@ import com.example.demo.service.EducationService;
 public class EducationServiceImp implements EducationService{
 
 	
+
 	@Autowired
 	private EducationMapper  educationMapper;
 	
@@ -94,5 +95,10 @@ public class EducationServiceImp implements EducationService{
 		return educationMapper.getCourseFclass(cId);
 	}
 	
-	
+	@Override
+	public List<Education> getTeacherStduentCourse(String account) {
+		// TODO Auto-generated method stub
+		return educationMapper.getTeacherStduentCourse(account);
+	}
+
 }

@@ -23,13 +23,14 @@ public class Education {
     
     private Teacher teacher;
     
+    private Student student;
+    
     
     public Education() {}
 
-    
 
 	public Education(Long eId, Long cId, Long tId, Integer eYear, Integer eSemester, Integer eFettle, String eRemark,
-			Integer courseId, Course course, Fclass fclass, Teacher teacher) {
+			Integer courseId, Course course, Fclass fclass, Teacher teacher, Student student) {
 		super();
 		this.eId = eId;
 		this.cId = cId;
@@ -42,8 +43,8 @@ public class Education {
 		this.course = course;
 		this.fclass = fclass;
 		this.teacher = teacher;
+		this.student = student;
 	}
-
 
 
 	public Long geteId() {
@@ -156,13 +157,26 @@ public class Education {
 	}
 
 
+	public Student getStudent() {
+		return student;
+	}
+
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Education [eId=" + eId + ", cId=" + cId + ", tId=" + tId + ", eYear=" + eYear + ", eSemester="
 				+ eSemester + ", eFettle=" + eFettle + ", eRemark=" + eRemark + ", courseId=" + courseId + ", course="
-				+ course + ", fclass=" + fclass + ", teacher=" + teacher + "]";
+				+ course + ", fclass=" + fclass + ", teacher=" + teacher + ", student=" + student + "]";
 	}
+
     
+
+	
 	
    
 }

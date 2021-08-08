@@ -70,9 +70,18 @@ public class AchievementServiceImp implements AchievementService {
 		// TODO Auto-generated method stub
 		return aMapper.DeleteAchievement(cId);
 	}
-	
-	
-	
+
+	@Override
+	public List<Achievement> getOneAchievement(Long sId, Long cId) {
+		// TODO Auto-generated method stub
+		return aMapper.getOneAchievement(sId, cId);
+	}
+
+	@Override
+	public List<Achievement> StudentExam(String cNo, String classname) {
+		// TODO Auto-generated method stub
+		return aMapper.StudentExam(cNo, classname);
+	}
 	
 	
 }

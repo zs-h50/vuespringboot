@@ -574,16 +574,20 @@
   
   
   <select id="getAll" resultMap="BaseResultMap">
-  		select s_id, s_no, s_name, gender, s_phone, email, birthday, id_card, contact, contactphone, address, postcode, father, fatherphone, mather, matherphone, fettle, remark,s.c_id,classname 
+  	select s.s_id, s_no, s_name, gender, s_phone, email, birthday, id_card, contact, contactphone, address, postcode, father, fatherphone, mather, matherphone, fettle, remark,s.c_id,classname,
+  	 h.genre,h.h_name,h_phone
     from student as s 
     left join fclass as f on s.c_id = f.c_id
+    left join household as h on h.s_id = s.s_id 
   </select>
   
   
   <select id="getStudent" resultMap="BaseResultMap">
-  	select s_id, s_no, s_name, gender, s_phone, email, birthday,id_card, contact, contactphone, address,postcode,father, fatherphone, mather, matherphone, fettle, remark,s.c_id,classname
+  	select s.s_id, s_no, s_name, gender, s_phone, email, birthday,id_card, contact, contactphone, address,postcode,father, fatherphone, mather, matherphone, fettle, remark,s.c_id,classname,
+  	h.genre,h.h_name,h_phone
     from student as s 
     left join fclass as f on s.c_id = f.c_id
+    left join household as h on h.s_id = s.s_id
     where s_no = #{sNo} 
   </select>
   

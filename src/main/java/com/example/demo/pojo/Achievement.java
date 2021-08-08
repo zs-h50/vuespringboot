@@ -22,13 +22,15 @@ public class Achievement {
     private Course course;
     
     private Fclass fclass;
+    
+    private Education education;
 
 	public Achievement() {
 		super();
 	}
 
 	public Achievement(Long aId, Long sId, Long cId, Integer aYears, Integer aSemester, Integer aScore, String aRemark,
-			Student student, Teacher teacher, Course course, Fclass fclass) {
+			Student student, Teacher teacher, Course course, Fclass fclass, Education education) {
 		super();
 		this.aId = aId;
 		this.sId = sId;
@@ -41,6 +43,7 @@ public class Achievement {
 		this.teacher = teacher;
 		this.course = course;
 		this.fclass = fclass;
+		this.education = education;
 	}
 
 	public Long getaId() {
@@ -131,11 +134,19 @@ public class Achievement {
 		this.fclass = fclass;
 	}
 
+	public Education getEducation() {
+		return education;
+	}
+
+	public void setEducation(Education education) {
+		this.education = education;
+	}
+
 	@Override
 	public String toString() {
 		return "Achievement [aId=" + aId + ", sId=" + sId + ", cId=" + cId + ", aYears=" + aYears + ", aSemester="
 				+ aSemester + ", aScore=" + aScore + ", aRemark=" + aRemark + ", student=" + student + ", teacher="
-				+ teacher + ", course=" + course + ", fclass=" + fclass + "]";
+				+ teacher + ", course=" + course + ", fclass=" + fclass + ", education=" + education + "]";
 	}
 
 	

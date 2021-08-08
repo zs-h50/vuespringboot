@@ -45,6 +45,12 @@ public class HouseServiceImp implements HouseService{
 		return houseMapper.updateByPrimaryKeySelective(record);
 	}
 
+	@Override
+	public List<HouseHold> getOneHouse(Long sId, Integer genre) {
+		// TODO Auto-generated method stub
+		return houseMapper.getOneHouse(sId, genre);
+	}
+
 	
 	
 	

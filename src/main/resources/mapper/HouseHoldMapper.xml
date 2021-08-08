@@ -314,4 +314,9 @@
   		from household as h left join student as s on s.s_id = h.s_id
   </select>
   
+  <select id="getOneHouse" resultMap="BaseResultMap">
+  	select * from household where h.s_id =#{sId} and genre=#{genre} 
+  </select>
+  
+  
 </mapper>

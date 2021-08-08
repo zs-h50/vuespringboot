@@ -9,7 +9,7 @@
     <result column="a_semester" jdbcType="INTEGER" property="aSemester" />
     <result column="a_score" jdbcType="INTEGER" property="aScore" />
     <result column="a_remark" jdbcType="VARCHAR" property="aRemark" />
-    		<association property="student" javaType="Student">
+    <association property="student" javaType="Student">
 			<id column="s_id" jdbcType="BIGINT" property="sId" />
 			<result column="s_no" jdbcType="VARCHAR" property="sNo" />
 			<result column="s_name" jdbcType="VARCHAR" property="sName" />
@@ -61,6 +61,17 @@
 			<id column="c_id" jdbcType="BIGINT" property="cId" />
 			<result column="classname" jdbcType="VARCHAR" property="classname" />
 			<result column="c_number" jdbcType="INTEGER" property="cNumber" />
+		</association>
+		
+		<association property="education" javaType="Education">
+			<id column="e_id" jdbcType="BIGINT" property="eId" />
+		    <result column="c_id" jdbcType="BIGINT" property="cId" />
+		    <result column="t_id" jdbcType="BIGINT" property="tId" />
+		    <result column="e_year" jdbcType="INTEGER" property="eYear" />
+		    <result column="e_semester" jdbcType="INTEGER" property="eSemester" />
+		    <result column="e_fettle" jdbcType="INTEGER" property="eFettle" />
+		    <result column="e_remark" jdbcType="VARCHAR" property="eRemark" />
+		    <result column="course_id" jdbcType="INTEGER" property="courseId" />
 		</association>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -296,25 +307,24 @@
   
   
   <select id="GetAll" resultMap="BaseResultMap">
-		select a.a_id, a.s_id, a.c_id, a.a_years, a.a_semester, a.a_score,
-		a.a_remark,
-		f.classname,c.c_no,c.c_name,t.t_name
+		select DISTINCT a.a_id, a.s_id, a.c_id, a.a_years, a.a_semester, a.a_score,
+		a.a_remark,f.classname,c.c_no,c.c_name,t.t_name,s.s_name,s.s_no
 		from achievement as a
 		left join student as s on a.s_id = s.s_id
 		left join fclass as f on s.c_id = f.c_id
 		left join course as c on c.c_id = a.c_id
-		left join teacher as t on t.t_id = c.t_id
+		left join education as e on e.course_id = a.c_id
+		left join teacher as t on t.t_id = e.t_id
 	</select>
 
 	<select id="GetTeacherExam" parameterType="java.lang.String" resultMap="BaseResultMap">
-		select a.a_id, a.s_id, a.c_id, a.a_years, a.a_semester, a.a_score,
-		a.a_remark,
-		f.classname,c.c_no,c.c_name,s.s_name
+		select a.*,f.classname,c.c_no,c.c_name,s.s_name,t.t_no
 		from achievement as a
 		left join student as s on a.s_id = s.s_id
 		left join fclass as f on s.c_id = f.c_id
 		left join course as c on c.c_id = a.c_id
-		left join teacher as t on t.t_id = c.t_id
+		left join education as e on e.course_id = a.c_id
+		left join teacher as t on t.t_id = e.t_id
 		where t.t_no = #{tNo}
 	</select>
 
@@ -326,14 +336,15 @@
 		left join student as s on a.s_id = s.s_id
 		left join fclass as f on s.c_id = f.c_id
 		left join course as c on c.c_id = a.c_id
-		left join teacher as t on t.t_id = c.t_id
+		left join education as e on e.course_id = a.c_id
+		left join teacher as t on t.t_id = e.t_id
 		where s.s_no = #{sNo}
 	</select>
 
 	<select id="GetStudentExamSearch" parameterType="java.lang.String" resultMap="BaseResultMap">
 		select a.a_id, a.s_id, a.c_id, a.a_years, a.a_semester, a.a_score,
 		a.a_remark,
-		f.classname,c.c_no,c.c_name,t.t_name,s.s_id
+		f.classname,c.c_no,c.c_name,t.t_name,s.s_id,s.s_name
 		from achievement as a
 		left join student as s on a.s_id = s.s_id
 		left join fclass as f on s.c_id = f.c_id
@@ -370,5 +381,20 @@
 	<delete id="DeleteAchievement" parameterType="java.lang.Long">
 		delete from achievement where c_id = #{cId}
 	</delete>
+	<select id="getOneAchievement" resultMap="BaseResultMap">
+		select * from achievement where s_id =#{sId} and c_id =#{cId}
+	</select>
+	
+	<select id="StudentExam" resultMap="BaseResultMap">
+		select DISTINCT a.a_id, a.s_id, a.c_id, a.a_years, a.a_semester, a.a_score,
+		a.a_remark,f.classname,c.c_no,c.c_name,t.t_name,s.s_name,s.s_no
+		from achievement as a
+		left join student as s on a.s_id = s.s_id
+		left join fclass as f on s.c_id = f.c_id
+		left join course as c on c.c_id = a.c_id
+		left join education as e on e.course_id = a.c_id
+		left join teacher as t on t.t_id = e.t_id
+		where c.c_no = #{cNo} and f.classname = #{classname}
+	</select>
 	
 </mapper>

@@ -42,4 +42,8 @@ public interface AchievementMapper {
     
     int DeleteAchievement(Long cId);
     
+    List<Achievement> getOneAchievement(Long sId,Long cId);
+    
+    List<Achievement> StudentExam(String cNo,String classname);
+    
 }

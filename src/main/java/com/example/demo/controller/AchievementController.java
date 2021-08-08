@@ -114,15 +114,41 @@ public class AchievementController {
 		return Result.success(lists);
 	}
 	
+	/**
+	 * 老师添加成绩
+	 * @param achievement
+	 * @return
+	 */
 	@PostMapping("/teacher/exam/add")
 	public Result AddExam(@RequestBody Achievement achievement) {
-		aService.insertSelective(achievement);
-		return Result.success();
+		List<Achievement> lists = aService.getOneAchievement(achievement.getsId(), achievement.getcId());
+		System.out.println(lists.size());
+		if (lists.size() != 0) {
+			return Result.error("100", "学生课程成绩已存在，请勿重新添加！");
+		}else {
+			aService.insertSelective(achievement);
+			return Result.success();
+		}
+
 	}
 	
 	@PostMapping("/teacher/exam/update")
 	public Result ExamUpdate(@RequestBody Achievement achievement) {
 		aService.updateByPrimaryKeySelective(achievement);
 		return Result.success();
+	}
+	
+	@GetMapping("/admin/student/fclass/exam/select")
+	public Result GetStudentFclassAllExam(Model model, @RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+			@RequestParam String cNo, @RequestParam String classname) {
+		System.out.println("查询数据中..........");
+		//pageNum 当前页码
+		PageHelper.startPage(pageNum,Pages.defaultPageSize);
+		List<Achievement> lists = aService.StudentExam(cNo, classname);
+		//使用PageInfo包装查询后的结果，只需要将PageInfo交给页面就行
+		PageInfo<Achievement> pageInfo = new PageInfo(lists);
+		model.addAttribute("pageInfo",pageInfo);
+//		System.out.println("查询成功！！");
+		return Result.success(lists);
 	}
 }

@@ -47,5 +47,5 @@ public interface EducationMapper {
     
     List<Education> getCourseFclass(Long cId);
     
-    
+    List<Education> getTeacherStduentCourse(String account);
 }

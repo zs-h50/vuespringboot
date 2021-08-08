@@ -40,6 +40,27 @@
 	    <result column="classname" jdbcType="VARCHAR" property="classname" />
 	    <result column="c_number" jdbcType="INTEGER" property="cNumber" />
     </association>
+    <association property="student" javaType="Student">
+    	<id column="s_id" jdbcType="BIGINT" property="sId" />
+	    <result column="s_no" jdbcType="VARCHAR" property="sNo" />
+	    <result column="s_name" jdbcType="VARCHAR" property="sName" />
+	    <result column="gender" jdbcType="INTEGER" property="gender" />
+	    <result column="s_phone" jdbcType="VARCHAR" property="sPhone" />
+	    <result column="email" jdbcType="VARCHAR" property="email" />
+	    <result column="birthday" jdbcType="DATE" property="birthday" />
+	    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+	    <result column="contact" jdbcType="VARCHAR" property="contact" />
+	    <result column="contactphone" jdbcType="VARCHAR" property="contactphone" />
+	    <result column="address" jdbcType="VARCHAR" property="address" />
+	    <result column="postcode" jdbcType="VARCHAR" property="postcode" />
+	    <result column="father" jdbcType="VARCHAR" property="father" />
+	    <result column="fatherphone" jdbcType="VARCHAR" property="fatherphone" />
+	    <result column="mather" jdbcType="VARCHAR" property="mather" />
+	    <result column="matherphone" jdbcType="VARCHAR" property="matherphone" />
+	    <result column="fettle" jdbcType="INTEGER" property="fettle" />
+	    <result column="remark" jdbcType="VARCHAR" property="remark" />
+	    <result column="c_id" property="cId"/>
+    </association>
   </resultMap>
   
   <sql id="Example_Where_Clause">
@@ -420,5 +441,17 @@
   		left join student as s on f.c_id = s.c_id 
   		where e.e_fettle =#{eFettle} and s.s_no = #{account}
   </select>
+  
+  <!-- 老师端页面添加成绩所需要的学生，班级信息-->
+  <select id="getTeacherStduentCourse" resultMap="BaseResultMap">
+  		select DISTINCT f.classname,c.c_id,c.c_name,s.s_id,s.s_name
+		from education as e
+		left join teacher as t on t.t_id = e.t_id
+		left join fclass as f on e.c_id = f.c_id
+		left join student as s on s.c_id = f.c_id
+		left join course as c on c.c_id = e.course_id
+		where t.t_no = #{tNo}
+  </select>
+  
   
 </mapper>

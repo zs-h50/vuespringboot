@@ -49,8 +49,14 @@ public class HouseController {
 	@ResponseBody
 	@PostMapping("/admin/house/add")
 	public Result getAdd(@RequestBody HouseHold houseHold) {
-		houseService.insertSelective(houseHold);
-		return Result.success();
+		List<HouseHold> oneHouse = houseService.getOneHouse(houseHold.getsId(), houseHold.getGenre());
+		if (oneHouse.size() != 0) {
+			return Result.error("100", "学生该名家庭成员已存在，添加失败！");
+		} else {
+			
+			houseService.insertSelective(houseHold);
+			return Result.success();
+		}
 	}
 	
 	/**

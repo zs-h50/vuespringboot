@@ -30,4 +30,6 @@ public interface HouseHoldMapper {
     
     List<HouseHold> getAllhouse();
     
+    List<HouseHold> getOneHouse(Long sId,Integer genre);
+    
 }
