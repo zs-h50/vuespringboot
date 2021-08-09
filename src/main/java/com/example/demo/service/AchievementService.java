@@ -27,4 +27,6 @@ public interface AchievementService {
 	 List<Achievement> getOneAchievement(Long sId,Long cId);
 	 
 	 List<Achievement> StudentExam(String cNo,String classname);
+	 
+	 int DeleteExam(Long aId);
 }

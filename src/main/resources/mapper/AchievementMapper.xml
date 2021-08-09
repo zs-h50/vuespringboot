@@ -397,4 +397,8 @@
 		where c.c_no = #{cNo} and f.classname = #{classname}
 	</select>
 	
+	<delete id="DeleteExam" parameterType="java.lang.Long">
+		delete from achievement where a_id = #{aId}
+	</delete>
+	
 </mapper>
